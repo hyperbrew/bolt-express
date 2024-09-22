@@ -1,7 +1,30 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import { onMount } from "svelte";
+  import svelteLogo from "./assets/svelte.svg";
+  import viteLogo from "/vite.svg";
+  //@ts-ignore
+  import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
+
+  let sandboxProxy: any;
+
+  const shapes = async () => {
+    console.log("Shapes");
+    try {
+      let result = await sandboxProxy.createShapes();
+      console.log(result);
+    } catch (exc) {
+      //@ts-ignore
+      console.error(exc.message, exc.stack);
+    }
+  };
+
+  onMount(() => {
+    AddOnSdk.ready.then(async () => {
+      console.log("AddOnSdk is ready for use.");
+      const { runtime } = AddOnSdk.instance;
+      sandboxProxy = await runtime.apiProxy("documentSandbox");
+    });
+  });
 </script>
 
 <main>
@@ -14,18 +37,17 @@
     </a>
   </div>
   <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
+  <button on:click={() => shapes()}>Do Stuff</button>
 
   <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
+    Check out <a
+      href="https://github.com/sveltejs/kit#readme"
+      target="_blank"
+      rel="noreferrer">SvelteKitttt</a
+    >, the official Svelte app framework powered by Vite!
   </p>
 
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
+  <p class="read-the-docs">Click on the Vite and Svelte logos to learn more</p>
 </main>
 
 <style>

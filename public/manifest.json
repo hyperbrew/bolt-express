@@ -15,7 +15,8 @@
     {
       "type": "panel",
       "id": "panel1",
-      "main": "index.html"
+      "main": "index.html",
+      "documentSandbox": "code.js"
     }
   ]
 }
