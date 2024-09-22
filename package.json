@@ -1,0 +1,27 @@
+{
+  "name": "bolt-express",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "devv": "yarn ccweb-add-on-scripts start --use \"vite build\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "serve -c ./serve.json --ssl-cert \"./ssl/cert.pem\" --ssl-key \"./ssl/key.pem\"",
+    "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
+  },
+  "devDependencies": {
+    "@adobe/ccweb-add-on-scripts": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.1.1",
+    "@tsconfig/svelte": "^5.0.4",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "serve": "^14.2.3",
+    "svelte": "^4.2.18",
+    "svelte-check": "^3.8.5",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  }
+}
