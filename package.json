@@ -4,9 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode dev",
+    "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "devv": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
+    "devvv": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
     "build": "vite build",
+    "buildcode": "vite build --config vite.config.code.ts",
     "preview": "vite preview",
     "serve": "serve -c ./serve.json --ssl-cert \"./ssl/cert.pem\" --ssl-key \"./ssl/key.pem\"",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
@@ -23,6 +26,7 @@
     "svelte-check": "^3.8.5",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-express-plugin": "^0.0.1"
   }
 }

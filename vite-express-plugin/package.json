@@ -1,0 +1,30 @@
+{
+  "name": "vite-express-plugin",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "A Vite Plugin for building Express Plugin Panels",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyperbrew/bolt-express.git"
+  },
+  "homepage": "https://github.com/hyperbrew/bolt-express",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "publish": "npm publish --access public",
+    "publish-beta": "npm publish --access public --tag beta"
+  },
+  "dependencies": {
+    "meta-bolt": "^0.0.12",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "rollup": "^4.18.0",
+    "vite": "^5.2.12"
+  },
+  "files": [
+    "lib/**/*"
+  ]
+}

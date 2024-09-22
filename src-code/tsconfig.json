@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "typeRoots": [
+      "../node_modules/@types",
+      "../node_modules/@adobe/ccweb-add-on-sdk-types",
+      "../src/globals.d.ts",
+      "../shared/universals.d.ts"
+    ]
+  },
+  "include": ["./**/*.ts"]
+}
