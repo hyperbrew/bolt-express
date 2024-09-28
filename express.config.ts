@@ -5,9 +5,9 @@ import type {
 import { version } from "./package.json";
 
 export const manifest: PluginManifest = {
-  testId: "63ca98b1-9551-4eb7-aa4f-dc494c79f23d",
-  name: "Gradients",
-  version: "1.0.3",
+  testId: "bolt-express",
+  name: "Bolt Express",
+  version: "1.0.0",
   manifestVersion: 2,
   requirements: {
     apps: [

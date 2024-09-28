@@ -5,14 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite --mode dev",
-    "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
-    "devv": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
-    "devvv": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
-    "serve": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy --port 5242",
     "build": "vite build",
+    "start": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
+    "devv": "yarn ccweb-add-on-scripts start --use \"vite --mode dev\" --src=dummy",
+    "devvv": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
+    "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
     "preview": "vite preview",
-    "serve_custom": "serve -c ./serve.json --ssl-cert \"./ssl/cert.pem\" --ssl-key \"./ssl/key.pem\"",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
