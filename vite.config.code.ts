@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [expressCodePlugin()],
   build: {
     emptyOutDir: false,
-    outDir: "dist",
+    outDir: ".tmp",
     target: "chrome58",
     rollupOptions: {
       external: ["add-on-sdk-document-sandbox", "express-document-sdk"],

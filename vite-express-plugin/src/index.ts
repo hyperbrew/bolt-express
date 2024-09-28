@@ -15,8 +15,8 @@ const dist = "./dist";
 const index = "./index.html";
 
 export const expressPluginInit = (mode: string) => {
-  // fs.mkdirSync(dist, { recursive: true });
-  // emptyFolder(dist);
+  fs.mkdirSync(tmp, { recursive: true });
+  // emptyFolder(tmp);
   startCodeWatcher(mode);
 };
 
@@ -34,7 +34,7 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
     // }
     //* write manifest
     fs.writeFileSync(
-      path.join(dist, "manifest.json"),
+      path.join(tmp, "manifest.json"),
       JSON.stringify(config.manifest, null, 2)
     );
     // copyFilesRecursively(tmp, dist, () => {

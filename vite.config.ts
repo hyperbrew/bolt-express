@@ -7,6 +7,7 @@ import {
   runAction,
 } from "vite-express-plugin";
 
+import { cpSync } from "fs";
 import { config } from "./express.config";
 
 const action = process.env.ACTION;
@@ -21,6 +22,12 @@ if (action)
     action
   );
 
+if (mode === "copy") {
+  console.log("COPY ONLY");
+  cpSync(".tmp", "dist", { recursive: true });
+  process.exit(0);
+}
+
 expressPluginInit(mode);
 
 // https://vitejs.dev/config/
@@ -31,7 +38,7 @@ export default defineConfig({
   ],
   base: "./",
   build: {
-    outDir: "dist",
+    outDir: ".tmp",
     emptyOutDir: false,
   },
 });
