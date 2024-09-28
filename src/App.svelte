@@ -37,7 +37,7 @@
     </a>
   </div>
   <h1>Vite + Svelte</h1>
-  <button on:click={() => shapes()}>Do Stuff</button>
+  <button on:click={() => shapes()}>Do Ssdfdsftuff</button>
 
   <p>
     Check out <a

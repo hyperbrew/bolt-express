@@ -3,6 +3,7 @@
     "typeRoots": [
       "../node_modules/@types",
       "../node_modules/@adobe/ccweb-add-on-sdk-types",
+      "../node_modules/@adobe/ccweb-add-on-sdk-types/add-on-script-sdk",
       "../src/globals.d.ts",
       "../shared/universals.d.ts"
     ]

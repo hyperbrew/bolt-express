@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 public_old
 .tmp
+vite.config.ts.timestamp*
+vite.config.code.ts.timestamp*

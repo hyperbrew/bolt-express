@@ -4,14 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode dev",
     "build": "vite build",
-    "start": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
-    "devv": "yarn ccweb-add-on-scripts start --use \"vite --mode dev\" --src=dummy",
-    "devvv": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
+    "dev": "yarn build && concurrently \"yarn devmain\" \"yarn serve_dev\"",
+    "serve_dev": "ccweb-add-on-scripts start --use \"vite build --mode staging\" --src=src-code",
+    "serve": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
+    "devmain": "cross-env MODE=dev vite --mode dev",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
     "preview": "vite preview",
+    "dev_simple": "cross-env MODE=dev vite",
+    "dev_o": "cross-env MODE=dev ccweb-add-on-scripts start --use \"vite build --mode dev\" --src=null",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
@@ -19,14 +21,17 @@
     "@adobe/ccweb-add-on-sdk-types": "^1.3.0",
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
     "@tsconfig/svelte": "^5.0.4",
+    "concurrently": "^9.0.1",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "express": "^4.21.0",
+    "npm-run-all": "^4.1.5",
+    "parallel": "^1.2.0",
     "serve": "^14.2.3",
     "svelte": "^4.2.18",
     "svelte-check": "^3.8.5",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
-    "vite": "^5.4.1",
-    "vite-express-plugin": "^0.0.1"
+    "vite": "^5.4.1"
   }
 }

@@ -10,7 +10,7 @@ import {
 import { config } from "./express.config";
 
 const action = process.env.ACTION;
-const mode = process.env.MODE;
+const mode = process.env.MODE || process.argv[4] || "";
 console.log("ACTION", action);
 console.log("MODE", mode);
 
@@ -21,7 +21,7 @@ if (action)
     action
   );
 
-expressPluginInit();
+expressPluginInit(mode);
 
 // https://vitejs.dev/config/
 export default defineConfig({

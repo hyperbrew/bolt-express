@@ -14,10 +14,10 @@ const tmp = "./.tmp";
 const dist = "./dist";
 const index = "./index.html";
 
-export const expressPluginInit = () => {
+export const expressPluginInit = (mode: string) => {
   // fs.mkdirSync(dist, { recursive: true });
   // emptyFolder(dist);
-  startCodeWatcher();
+  startCodeWatcher(mode);
 };
 
 export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (

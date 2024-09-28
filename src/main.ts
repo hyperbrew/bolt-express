@@ -1,10 +1,10 @@
 import "./app.css";
 import App from "./app.svelte";
 
-const mode = import.meta.env.MODE; // "development" or "production"
+const mode = import.meta.env.MODE; // "dev" | "production" | "staging"
 
 const devUrl = "http://localhost:5173/";
-if (mode === "dev" && location.href !== devUrl) location.href = devUrl;
+if (mode === "staging" && location.href !== devUrl) location.href = devUrl;
 
 const app = new App({
   target: document.getElementById("app")!,
