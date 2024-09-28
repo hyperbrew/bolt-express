@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import svelteLogo from "./assets/svelte.svg";
   import viteLogo from "/vite.svg";
-  //@ts-ignore
   import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 
   let sandboxProxy: any;
@@ -22,8 +21,13 @@
     AddOnSdk.ready.then(async () => {
       console.log("AddOnSdk is ready for use.");
       const { runtime } = AddOnSdk.instance;
+      if (!runtime) {
+        return console.error("Runtime not found");
+      }
       sandboxProxy = await runtime.apiProxy("documentSandbox");
+      console.log("sandboxProxy", sandboxProxy);
     });
+    AddOnSdk.app.document.plu;
   });
 </script>
 
@@ -38,6 +42,7 @@
   </div>
   <h1>Vite + Svelte</h1>
   <button on:click={() => shapes()}>Do Ssdfdsftuff</button>
+  <button on:click={() => location.reload}>Reload</button>
 
   <p>
     Check out <a

@@ -11,12 +11,14 @@ const { runtime } = addOnSandboxSdk.instance;
 async function start() {
   const sandboxApi = {
     createShapes: function () {
-      console.log("Creating shapes this time!!!!!5555");
+      addOnSandboxSdk.instance.runtime.apiProxy.console.log(
+        "Creating shapes 6"
+      );
       const insertionParent = editor.context.insertionParent;
 
       const rectangle = editor.createRectangle();
       rectangle.width = 400;
-      rectangle.height = 250;
+      rectangle.height = 800;
       rectangle.translation = { x: 100, y: 20 };
       const rectFill = editor.makeColorFill(
         colorUtils.fromRGB(

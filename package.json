@@ -6,7 +6,9 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite build --mode staging && concurrently \"yarn devmain\" \"yarn serve_copy\"",
-    "serve_copy": "ccweb-add-on-scripts start --use \"vite build --mode copy\" --src=.tmp",
+    "serve_copy": "ccweb-add-on-scripts start --use \"vite build --mode copy\" --src=dummy",
+    "serve_copy_GOOD": "ccweb-add-on-scripts start --use \"vite build --mode copy\" --src=.tmp",
+    "serve_copy_f": "ccweb-add-on-scripts start --use \"cpy .tmp/* dist\" --src=.tmp",
     "serve_dev": "ccweb-add-on-scripts start --use \"vite build --mode staging\" --src=src-code",
     "serve": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
     "devmain": "cross-env MODE=dev vite --mode dev",
@@ -34,5 +36,8 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "vite": "^5.4.1"
+  },
+  "dependencies": {
+    "cpy-cli": "^5.0.0"
   }
 }
