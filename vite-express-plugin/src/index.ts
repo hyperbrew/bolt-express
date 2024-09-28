@@ -15,8 +15,8 @@ const dist = "./dist";
 const index = "./index.html";
 
 export const expressPluginInit = () => {
-  fs.mkdirSync(tmp, { recursive: true });
-  emptyFolder(tmp);
+  // fs.mkdirSync(dist, { recursive: true });
+  // emptyFolder(dist);
   startCodeWatcher();
 };
 
@@ -27,19 +27,19 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
   name: "vite-express-plugin",
   writeBundle() {
     // setTimeout(() => {
-    if (fs.existsSync(dist)) {
-      emptyFolder(dist);
-    } else {
-      fs.mkdirSync(dist, { recursive: true });
-    }
+    // if (fs.existsSync(dist)) {
+    //   emptyFolder(dist);
+    // } else {
+    //   fs.mkdirSync(dist, { recursive: true });
+    // }
     //* write manifest
     fs.writeFileSync(
       path.join(dist, "manifest.json"),
       JSON.stringify(config.manifest, null, 2)
     );
-    copyFilesRecursively(tmp, dist, () => {
-      triggerExpressRefresh(path.join(dist, index));
-    });
+    // copyFilesRecursively(tmp, dist, () => {
+    //   triggerExpressRefresh(path.join(dist, index));
+    // });
     // }, 100);
   },
   async closeBundle() {

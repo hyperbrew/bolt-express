@@ -5,6 +5,7 @@ export const triggerExpressRefresh = (file: string) => {
 };
 
 const buildCode = (runner: string) => {
+  console.log("Building code.ts ...");
   const res = execSync(`${runner} run buildcode`, {
     encoding: "utf-8",
   });

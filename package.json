@@ -8,10 +8,11 @@
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "devv": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
     "devvv": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy",
+    "serve": "yarn ccweb-add-on-scripts start --use \"vite build\" --src=dummy --port 5242",
     "build": "vite build",
     "buildcode": "vite build --config vite.config.code.ts",
     "preview": "vite preview",
-    "serve": "serve -c ./serve.json --ssl-cert \"./ssl/cert.pem\" --ssl-key \"./ssl/key.pem\"",
+    "serve_custom": "serve -c ./serve.json --ssl-cert \"./ssl/cert.pem\" --ssl-key \"./ssl/key.pem\"",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {

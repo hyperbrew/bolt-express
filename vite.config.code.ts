@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [expressCodePlugin()],
   build: {
     emptyOutDir: false,
-    outDir: ".tmp",
+    // outDir: ".tmp",
+    outDir: "dist",
     target: "chrome58",
     rollupOptions: {
       output: {
