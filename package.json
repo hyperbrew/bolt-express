@@ -6,7 +6,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite build --mode staging && concurrently \"yarn devmain\" \"yarn serve_copy\"",
-    "serve_copy": "ccweb-add-on-scripts start --use \"vite build --mode copy\" --src=dummy",
+    "serve_copy": "ccweb-add-on-scripts start --use \"vite build --mode copy\" --src=src-code",
     "serve_copy_GOOD": "ccweb-add-on-scripts start --use \"vite build --mode copy\" --src=.tmp",
     "serve_copy_f": "ccweb-add-on-scripts start --use \"cpy .tmp/* dist\" --src=.tmp",
     "serve_dev": "ccweb-add-on-scripts start --use \"vite build --mode staging\" --src=src-code",

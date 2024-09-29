@@ -1,24 +1,26 @@
 // import { getStore, setStore, listenTS, dispatchTS } from "./utils/code-utils";
 
-console.log("Hello World from CODE!");
-//
+console.log("CODE A!");
 
 import addOnSandboxSdk from "add-on-sdk-document-sandbox";
+console.log("CODE B!");
 import { editor, colorUtils } from "express-document-sdk";
+console.log("CODE C!");
 
 const { runtime } = addOnSandboxSdk.instance;
+console.log("CODE D!");
 
 async function start() {
+  console.log("CODE E!");
   const sandboxApi = {
     createShapes: function () {
-      addOnSandboxSdk.instance.runtime.apiProxy.console.log(
-        "Creating shapes 6"
-      );
+      console.log("CODE F!");
+      console.log("Creating shapes 6");
       const insertionParent = editor.context.insertionParent;
 
       const rectangle = editor.createRectangle();
       rectangle.width = 400;
-      rectangle.height = 800;
+      rectangle.height = 400;
       rectangle.translation = { x: 100, y: 20 };
       const rectFill = editor.makeColorFill(
         colorUtils.fromRGB(
@@ -35,7 +37,10 @@ async function start() {
   };
 
   // Expose `sandboxApi` to the UI runtime.
+  console.log("CODE g!");
   runtime.exposeApi(sandboxApi);
+  console.log("CODE H!");
 }
 
 start();
+console.log("CODE j!");

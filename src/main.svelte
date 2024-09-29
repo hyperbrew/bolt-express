@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import svelteLogo from "./assets/svelte.svg";
-  import viteLogo from "/vite.svg";
+  import viteLogo from "./assets/vite.svg";
   import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 
   let sandboxProxy: any;
@@ -27,7 +27,6 @@
       sandboxProxy = await runtime.apiProxy("documentSandbox");
       console.log("sandboxProxy", sandboxProxy);
     });
-    AddOnSdk.app.document.plu;
   });
 </script>
 
@@ -41,18 +40,7 @@
     </a>
   </div>
   <h1>Vite + Svelte</h1>
-  <button on:click={() => shapes()}>Do Ssdfdsftuff</button>
-  <button on:click={() => location.reload}>Reload</button>
-
-  <p>
-    Check out <a
-      href="https://github.com/sveltejs/kit#readme"
-      target="_blank"
-      rel="noreferrer">SvelteKitttt</a
-    >, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">Click on the Vite and Svelte logos to learn more</p>
+  <button on:click={() => shapes()}>Make Shapes</button>
 </main>
 
 <style>

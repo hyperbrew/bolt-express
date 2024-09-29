@@ -1,5 +1,5 @@
 import "./app.css";
-import App from "./app.svelte";
+import App from "./main.svelte";
 
 const mode = import.meta.env.MODE; // "dev" | "production" | "staging"
 
