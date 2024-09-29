@@ -16,6 +16,7 @@ const index = "./index.html";
 
 export const expressPluginInit = (mode: string) => {
   fs.mkdirSync(tmp, { recursive: true });
+  fs.mkdirSync(dist, { recursive: true });
   if (mode === "build" || mode === "zip") {
     emptyFolder(tmp);
   }
@@ -24,7 +25,7 @@ export const expressPluginInit = (mode: string) => {
 
 export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
   config: ExpressConfig,
-  mode?: string
+  mode?: string,
 ) => ({
   name: "vite-express-plugin",
   writeBundle() {
@@ -37,7 +38,7 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
     //* write manifest
     fs.writeFileSync(
       path.join(tmp, "manifest.json"),
-      JSON.stringify(config.manifest, null, 2)
+      JSON.stringify(config.manifest, null, 2),
     );
     if (mode === "build" || mode === "zip") {
       emptyFolder(dist);
