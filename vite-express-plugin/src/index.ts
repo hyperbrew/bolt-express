@@ -16,7 +16,9 @@ const index = "./index.html";
 
 export const expressPluginInit = (mode: string) => {
   fs.mkdirSync(tmp, { recursive: true });
-  // emptyFolder(tmp);
+  if (mode === "build" || mode === "zip") {
+    emptyFolder(tmp);
+  }
   startCodeWatcher(mode);
 };
 
@@ -37,10 +39,13 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
       path.join(tmp, "manifest.json"),
       JSON.stringify(config.manifest, null, 2)
     );
-    // copyFilesRecursively(tmp, dist, () => {
-    //   triggerExpressRefresh(path.join(dist, index));
-    // });
-    // }, 100);
+    if (mode === "build" || mode === "zip") {
+      emptyFolder(dist);
+      copyFilesRecursively(tmp, dist, () => {
+        triggerExpressRefresh(path.join(dist, index));
+      });
+      // }, 100);
+    }
   },
   async closeBundle() {
     if (mode === "zip") {

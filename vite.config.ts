@@ -53,7 +53,7 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: ".tmp",
-    emptyOutDir: false,
+    emptyOutDir: false, //mode !== "dev",
   },
   css: {
     preprocessorOptions: {

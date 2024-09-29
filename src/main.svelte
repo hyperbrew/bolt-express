@@ -56,7 +56,7 @@
     <button on:click={increment}>
       Count {count}
     </button>
-    <button on:click={helloWorld}>Hello World</button>
+    <button on:click={helloWorld}>Hello</button>
   </div>
   <p>
     Edit
