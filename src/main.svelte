@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { getRuntime, type SandboxProxy } from "./utils/utils";
+  import { sandbox } from "./utils/utils";
 
   // BOLT_SAMPLECODE_START
   import boltIconLight from "./assets/bolt-express-lightmode.svg";
@@ -13,21 +13,19 @@
   const increment = () => (count += 1);
 
   const helloWorld = async () => {
-    let result = await sandboxProxy.createBox(400, 400);
+    let result = await sandbox.createBox(400, 400);
     console.log(result);
   };
   // BOLT_SAMPLECODE_END
-  let sandboxProxy: SandboxProxy;
-  onMount(() => {
-    getRuntime().then((res) => (sandboxProxy = res));
-  });
+
+  onMount(() => {});
 </script>
 
 <main>
   <!-- BOLT_SAMPLECODE_START -->
   <a
     class="bolt-icon"
-    href="https://hyperbrew.co/resources/bolt-figma/"
+    href="https://hyperbrew.co/resources/bolt-express/"
     target="_blank"
   >
     <img src={boltIconLight} alt="" />
@@ -58,7 +56,7 @@
     <button on:click={increment}>
       Count {count}
     </button>
-    <button on:click={helloWorld}>Hello</button>
+    <button on:click={helloWorld}>Hello World</button>
   </div>
   <p>
     Edit

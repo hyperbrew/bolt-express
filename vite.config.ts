@@ -41,7 +41,12 @@ expressPluginInit(mode);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    "process.env.HMR_PORT": JSON.stringify(config.hmrPort),
+  },
   plugins: [
+    react(), // BOLT_REACT_ONLY
+    vue(), // BOLT_VUE_ONLY
     svelte({ preprocess: sveltePreprocess({ typescript: true }) }), // BOLT_SVELTE_ONLY
     expressPlugin(config, mode),
   ],
@@ -56,5 +61,8 @@ export default defineConfig({
         api: "modern",
       },
     },
+  },
+  server: {
+    port: config.hmrPort,
   },
 });

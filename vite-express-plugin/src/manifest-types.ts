@@ -14,5 +14,9 @@ export interface PluginManifest {
     id: string;
     main: string;
     documentSandbox: string;
+    permissions: {
+      sandbox: string[];
+      oauth: string[];
+    };
   }[];
 }

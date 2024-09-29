@@ -23,12 +23,18 @@ export const manifest: PluginManifest = {
       id: "panel1",
       main: "index.html",
       documentSandbox: "code.js",
+      permissions: {
+        sandbox: ["allow-popups", "allow-presentation", "allow-downloads"],
+        oauth: [],
+      },
     },
   ],
 };
 
 const extraPrefs = {
   copyZipAssets: ["public-zip/*"],
+  servePort: 5241,
+  hmrPort: 5173,
 };
 
 export const config: ExpressConfig = {

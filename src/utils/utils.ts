@@ -21,3 +21,16 @@ export const getRuntime = (): Promise<SandboxProxy> => {
     });
   });
 };
+
+//@ts-ignore
+export let sandbox: SandboxProxy = {};
+
+const mode = import.meta.env.MODE;
+const port = import.meta.env.HMR_PORT || process.env.HMR_PORT || "";
+
+export const initBolt = async () => {
+  console.log("initBolt");
+  const devUrl = `http://localhost:${port}/`;
+  if (mode === "staging" && location.href !== devUrl) location.href = devUrl;
+  await getRuntime().then((res) => (sandbox = res));
+};
