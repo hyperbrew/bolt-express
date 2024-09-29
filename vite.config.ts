@@ -7,7 +7,8 @@ import {
   runAction,
 } from "vite-express-plugin";
 
-import { cpSync } from "fs";
+import { cpSync, rmSync, readdirSync } from "fs";
+import { join } from "path";
 import { config } from "./express.config";
 
 const action = process.env.ACTION;
@@ -25,7 +26,13 @@ if (action)
 if (mode === "copy") {
   console.log("COPY ONLY");
   cpSync(".tmp", "dist", { recursive: true });
-  process.exit(0);
+  readdirSync(process.cwd()).forEach((file) => {
+    if (file.includes("config.ts.timestamp-")) {
+      rmSync(join(process.cwd(), file));
+    }
+  });
+
+  process.exit();
 }
 
 expressPluginInit(mode);

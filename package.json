@@ -17,7 +17,8 @@
     "preview": "vite preview",
     "dev_simple": "cross-env MODE=dev vite",
     "dev_o": "cross-env MODE=dev ccweb-add-on-scripts start --use \"vite build --mode dev\" --src=null",
-    "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json",
+    "dep": "cross-env ACTION=dependencyCheck vite"
   },
   "devDependencies": {
     "@adobe/ccweb-add-on-scripts": "^2.0.0",
@@ -38,6 +39,30 @@
     "vite": "^5.4.1"
   },
   "dependencies": {
-    "cpy-cli": "^5.0.0"
-  }
+    "cpy-cli": "^5.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vue": "^3.5.10"
+  },
+  "files": [
+    "index.html",
+    "package.json",
+    "package.react.jsonc",
+    "package.svelte.jsonc",
+    "package.vue.jsonc",
+    "public/**/*",
+    "public-zip/**/*",
+    "README.md",
+    "src/**/*",
+    "src-code/**/*",
+    "shared/**/*",
+    ".github/**/*",
+    "tsconfig.json",
+    "express.config.ts",
+    "vite.config.ts",
+    "vite.config.code.ts",
+    "yarn.lock",
+    ".npmrc",
+    ".gitignore"
+  ]
 }

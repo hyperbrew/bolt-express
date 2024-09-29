@@ -40,7 +40,7 @@
     </a>
   </div>
   <h1>Vite + Svelte</h1>
-  <button on:click={() => shapes()}>Make Shapes</button>
+  <button on:click={() => shapes()}>Make Shapes!!</button>
 </main>
 
 <style>

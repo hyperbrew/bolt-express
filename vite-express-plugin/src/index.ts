@@ -74,6 +74,9 @@ export const runAction = (opts: object, action: string) => {
   if (action === "dependencyCheck") {
     console.log("Checking Dependencies");
     packageSync();
+  } else if (action === "copy") {
+    console.log("COPY ONLY");
+    fs.cpSync(".tmp", "dist", { recursive: true });
   }
   process.exit();
 };
