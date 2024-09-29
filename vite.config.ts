@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT_SVELTE_ONLY
 import sveltePreprocess from "svelte-preprocess"; // BOLT_SVELTE_ONLY
+import react from "@vitejs/plugin-react"; // BOLT_REACT_ONLY
+import vue from "@vitejs/plugin-vue"; // BOLT_VUE_ONLY
 import {
   expressPlugin,
   expressPluginInit,
@@ -47,5 +49,12 @@ export default defineConfig({
   build: {
     outDir: ".tmp",
     emptyOutDir: false,
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern",
+      },
+    },
   },
 });

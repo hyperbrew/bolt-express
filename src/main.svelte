@@ -1,62 +1,72 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import svelteLogo from "./assets/svelte.svg";
-  import viteLogo from "./assets/vite.svg";
-  import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
+  import { getRuntime, type SandboxProxy } from "./utils/utils";
 
-  let sandboxProxy: any;
+  // BOLT_SAMPLECODE_START
+  import boltIconLight from "./assets/bolt-express-lightmode.svg";
+  import viteIcon from "./assets/vite.svg";
+  import svelteIcon from "./assets/svelte.svg";
+  import typescriptIcon from "./assets/typescript.svg";
+  import sassIcon from "./assets/sass.svg";
 
-  const shapes = async () => {
-    console.log("Shapes");
-    try {
-      let result = await sandboxProxy.createShapes();
-      console.log(result);
-    } catch (exc) {
-      //@ts-ignore
-      console.error(exc.message, exc.stack);
-    }
+  let count: number = 0;
+  const increment = () => (count += 1);
+
+  const helloWorld = async () => {
+    let result = await sandboxProxy.createBox(400, 400);
+    console.log(result);
   };
-
+  // BOLT_SAMPLECODE_END
+  let sandboxProxy: SandboxProxy;
   onMount(() => {
-    AddOnSdk.ready.then(async () => {
-      console.log("AddOnSdk is ready for use.");
-      const { runtime } = AddOnSdk.instance;
-      if (!runtime) {
-        return console.error("Runtime not found");
-      }
-      sandboxProxy = await runtime.apiProxy("documentSandbox");
-      console.log("sandboxProxy", sandboxProxy);
-    });
+    getRuntime().then((res) => (sandboxProxy = res));
   });
 </script>
 
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
+  <!-- BOLT_SAMPLECODE_START -->
+  <a
+    class="bolt-icon"
+    href="https://hyperbrew.co/resources/bolt-figma/"
+    target="_blank"
+  >
+    <img src={boltIconLight} alt="" />
+  </a>
+  <div class="stack-icons">
+    <a href="https://vitejs.dev" target="_blank">
+      <img src={viteIcon} alt="" />
+      <span>Vite</span>
     </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
+    +
+    <a href="https://svelte.dev" target="_blank">
+      <img src={svelteIcon} alt="" />
+      <span> Svelte </span>
+    </a>
+    +
+    <a href="https://www.typescriptlang.org/" target="_blank">
+      <img src={typescriptIcon} alt="" />
+      <span> TypeScript </span>
+    </a>
+    +
+    <a href="https://sass-lang.com/" target="_blank">
+      <img src={sassIcon} alt="" />
+      <span> Sass </span>
     </a>
   </div>
-  <h1>Vite + Svelte</h1>
-  <button on:click={() => shapes()}>Make Shapes!!</button>
+
+  <div class="card">
+    <button on:click={increment}>
+      Count {count}
+    </button>
+    <button on:click={helloWorld}>Hello</button>
+  </div>
+  <p>
+    Edit
+    <code>main.svelte</code> and save to use Hot Reloading.
+  </p>
+  <!-- BOLT_SAMPLECODE_END -->
 </main>
 
-<style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
+<style lang="scss">
+  @import "./variables.scss";
 </style>
