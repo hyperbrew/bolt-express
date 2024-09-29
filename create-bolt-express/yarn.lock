@@ -1069,10 +1069,10 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-bolt-express@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/bolt-express/-/bolt-express-0.0.4.tgz#95bb5287f71456748c2b61fc3b0599055219bf7e"
-  integrity sha512-eHqlg3y5/JG/PkhY+/qVYICYmbT4ChUS7W2T5P82RuLTJ+uMzLP13xwgDciXceFRVj0pdxADm7WZNQJ/LrUmiA==
+bolt-express@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/bolt-express/-/bolt-express-0.0.5.tgz#ef8c57596db058bb18fd22d9529d925b98c2cb62"
+  integrity sha512-fKFk54q+jiXu175DfUqA4UeYydtAcaB2eIB+N9dEjVqGtMkpCck3+IZN93xYzxRUESw0rm/FznD3cBKytVTdWQ==
   dependencies:
     react "^18.3.1"
     react-dom "^18.3.1"
@@ -3126,10 +3126,10 @@ v8-to-istanbul@^9.0.1:
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^2.0.0"
 
-vite-express-plugin@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/vite-express-plugin/-/vite-express-plugin-0.0.1.tgz#329260ab9cdd70013f71d6d9967783a897b54c9c"
-  integrity sha512-vVyuS7EmHDACj6IgVRW6bdC2wHCkdazNwZpzHoVZrSomtxOGKHucTG+GhLCVbVh+4FYm1oOD1UV1Mc2y4bJqig==
+vite-express-plugin@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/vite-express-plugin/-/vite-express-plugin-0.0.4.tgz#0b2e7be1c300f6f7cd4143d6556cfe6d4a371ee8"
+  integrity sha512-LqF9Uove8d1aSW/PN0802qH7W+9gvGTnIc5zDu+2QCMlDGUBPM85351Xm2WDLezhFySItobW2CD8Y4x08DMV/A==
   dependencies:
     meta-bolt "^0.0.12"
     typescript "^5.4.5"
