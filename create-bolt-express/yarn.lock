@@ -2388,6 +2388,30 @@ meta-bolt@^0.0.12:
     typescript "^4.9.5"
     yargs "^17.7.2"
 
+meta-bolt@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/meta-bolt/-/meta-bolt-0.0.13.tgz#867d165288196c7f3ad540163c8ff91f13796717"
+  integrity sha512-I0X6wWX00ZoVYwGQnrBLo8zeUh9NgkYMhTk3EwPCki1fBAZExEiGKnVgYMHFafKjHtR6p9VAttnKNAmMvC5ALw==
+  dependencies:
+    "@clack/prompts" "^0.7.0"
+    "@types/prettier" "^3.0.0"
+    "@types/resolve-dir" "^0.0.0"
+    archiver "^7.0.1"
+    cliui "^8.0.1"
+    commander "^12.1.0"
+    execa "^5.1.1"
+    fast-glob "^3.3.2"
+    fs-extra "^10.0.1"
+    jsonc-parser "^3.2.1"
+    picocolors "^1.0.0"
+    prettier "^3.1.0"
+    radash "^11.0.0"
+    resolve-dir "^1.0.1"
+    ts-morph "^17.0.1"
+    ts-node "^10.7.0"
+    typescript "^4.9.5"
+    yargs "^17.7.2"
+
 micromatch@^4.0.4:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.8.tgz#d66fa18f3a47076789320b9b1af32bd86d9fa202"
