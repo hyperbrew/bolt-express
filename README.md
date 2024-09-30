@@ -25,17 +25,8 @@ Huge thanks to our backers who have made this project possible!
 
 _Founding backers have made substantial contribution to the project at the start which has made this project possible._
 
-<a href="https://express.com/" target="_blank">
-<img src="https://cdn.sanity.io/images/g3so7nt7/production/6cb43009e94a67554c68fb50b9363a0aa68f3d23-418x200.png?w=1000&h=1000&fit=max" alt="Express" title="Express" width="300" /></a>
-
-...
-
-### Feature Backers
-
-_Feature backers have sponsored individual features that have made this project better for the whole community._
-
-<a href="https://battleaxe.co/" target="_blank">
-<img src="https://battleaxe.dev/servile/logotype_lightgrey.png" alt="Battle Axe" title="Battle Axe" width="150" /></a>
+<a href="https://developer.adobe.com/fund-for-design/" target="_blank">
+<img src="https://developer.adobe.com/fund-for-design/media_16349b44cedb9a674b4b4acee670cb09ec8e0e4b0.png?width=1200&format=pjpg&optimize=medium" style="border-radius:25px" alt="Express" title="Express" width="300" /></a>
 
 ...
 
@@ -130,140 +121,62 @@ Bundles your addon and specified assets from `copyZipAssets` to a zip archive in
 - npm `npm run zip`
 - pnpm `pnpm zip`
 
-Write frontend UI code in `src/main.svelte`
+Write frontend UI code in `src/main.svelte` / `src/main.tsx` / `src/main.vue`
 
 Write backend express code in `src-code/code.ts`
 
 ### Add Addon to Express
 
 1. Open Express
-2. Select Express Menu > Addons > Development > Import Addon from Manifest
-3. Select the `manifest.json` file in the `dist` folder
-4. Your addon can now be launched from the menu or managed under "Manage Addons"
+2. Open Document
+3. Select Add-ons from left sidebar
+4. Select "Your add-ons"
+5. Toggle "Add-on testing"
+6. With correct serve port number, check "I Understand..." and press "Connect"
 
 ### Load and Debug Addon
 
-1. Launch your addon by going to `Express Menu > Addons > Development > "Your Addon"`
-2. Ensure Hot Reloading is checked under `Express Menu > Addons > Development > Hot Reloading Addon`
-3. Open the Dev Tools console with `Express Menu > Addons > Development > Show/Hide Console`
+1. Launch your addon by clicking on the icon of your Addon in the "In Development" section of "Your Add-ons"
+2. Open the Dev Tools by right click > Inspect
 
 ---
 
 ## Sending Messages between the Frontend and Backend
 
-Bolt Express makes messaging between the frontend UI and backend code layers simple and type-safe. This can be done with `listenTS()` and `dispatchTS()`.
+Bolt Express makes messaging between the frontend UI and backend code layers simple and type-safe.
 
-Using this method accounts for:
+Simply write your functions in `code.ts` on the backend, and import the `sandbox` variable to call the sandbox functions from the frontend with full type-safety:
 
-- Setting up a scoped event listener in the listening context
-- Removing the listener when the event is called (if `once` is set to true)
-- Ensuring End-to-End Type-Safety for the event
+### 1. Write Function in Backend src-code/code.ts
 
-### 1. Declare the Event Type in EventTS in shared/universals.ts
-
-```js
-export type EventTS = {
-  myCustomEvent: {
-    oneValue: string,
-    anotherValue: number,
+```ts
+const sandboxApi = {
+  myFunction: (a: string, b: number) => {
+    // do stuff
+    return true;
   },
-  // [... other events]
 };
 ```
 
-### 2a. Send a Message from the Frontend to the Backend
+### 2. Call that Function from the Frontend
 
-**Backend Listener:** `src-code/code.ts`
+**Frontend:** `src/main.svelte` / `src/main.tsx` / `src/main.vue`
 
-```js
-import { listenTS } from "./utils/code-utils";
+```ts
+import { sandbox } from "./utils/utils";
 
-listenTS("myCustomEvent", (data) => {
-  console.log("oneValue is", data.oneValue);
-  console.log("anotherValue is", data.anotherValue);
-});
-```
-
-**Frontend Dispatcher:** `index.svelte` or `index.tsx` or `index.vue`
-
-```js
-import { dispatchTS } from "./utils/utils";
-
-dispatchTS("myCustomEvent", { oneValue: "name", anotherValue: 20 });
-```
-
-### 2b. Send a Message from the Backend to the Frontend
-
-**Frontend Listener:** `index.svelte` or `index.tsx` or `index.vue`
-
-```js
-import { listenTS } from "./utils/utils";
-
-listenTS(
-  "myCustomEvent",
-  (data) => {
-    console.log("oneValue is", data.oneValue);
-    console.log("anotherValue is", data.anotherValue);
-  },
-  true
-);
-```
-
-_Note: `true` is passed as the 3rd argument which means the listener will only listen once and then be removed. Set this to true to avoid duplicate events if you only intend to recieve one reponse per function._
-
-**Backend Dispatcher:** `src-code/code.ts`
-
-```js
-import { dispatchTS } from "./utils/code-utils";
-
-dispatchTS("myCustomEvent", { oneValue: "name", anotherValue: 20 });
+const helloWorld = async () => {
+  let result = await sandbox.myFunction("hello", 400);
+  console.log(result);
+};
 ```
 
 ---
 
 ### Info on Build Process
 
-Frontend code is built to the `.tmp` directory temporarily and then copied to the `dist` folder for final. This is done to avoid Express throwing addon errors with editing files directly in the `dist` folder.
-
-The frontend code (JS, CSS, HTML) is bundled into a single `index.html` file and all assets are inlined.
+Frontend code is built to the `.tmp` directory temporarily and then copied to the `dist` folder for final. This is done to run the build process outside of the @adobe/ccweb-add-on-scripts process to improve speed in development.
 
 The backend code is bundled into a single `code.js` file.
 
-Finally the `manifest.json` is generated from the `express.config.ts` file with type-safety. This is configured when running `yarn create bolt-express`, but you can make additional modifications to the `express.config.ts` file after initialization.
-
-### Read if Dev or Production Mode
-
-Use the built-in Vite env var MODE to determine this:
-
-```js
-const mode = import.meta.env.MODE; // 'dev' or 'production'
-```
-
-### Troubleshooting Assets
-
-Express requires the entire frontend code to be wrapped into a single HTML file. For this reason, bundling external images, svgs, and other assets is not possible.
-
-The solution to this is to inline all assets. Vite is already setup to inline most asset types it understands such as JPG, PNG, SVG, and more, however if the file type you're trying to inline doesn't work, you may need to add it to the assetsInclude array in the vite config:
-
-More Info: https://vitejs.dev/config/shared-options.html#assetsinclude
-
-Additionally, you may be able to import the file as a raw string, and then use that data inline in your component using the `?raw` suffix.
-
-For example:
-
-```ts
-import icon from "./assets/icon.svg?raw";
-```
-
-and then use that data inline in your component:
-
-```js
-// Svelte
-{@html icon}
-
-// React
-<div dangerouslySetInnerHTML={{ __html: icon }}></div>
-
-// Vue
-<div v-html="icon"></div>
-```
+The `manifest.json` is generated from the `express.config.ts` file with type-safety. This is configured when running `yarn create bolt-express`, but you can make additional modifications to the `express.config.ts` file after initialization.

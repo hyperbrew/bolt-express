@@ -1,4 +1,7 @@
-export interface PluginManifest {
+import type { AddOnManifestV2 } from "@adobe/ccweb-add-on-manifest";
+
+export type PluginManifest = AddOnManifestV2;
+export interface PluginManifestManual {
   testId: string;
   name: string;
   version: string;
