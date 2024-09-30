@@ -1,5 +1,3 @@
-// import { getStore, setStore, listenTS, dispatchTS } from "./utils/code-utils";
-
 import addOnSandboxSdk from "add-on-sdk-document-sandbox";
 
 import { editor, colorUtils } from "express-document-sdk";
@@ -18,8 +16,8 @@ const sandboxApi = {
         Math.random(),
         Math.random(),
         Math.random(),
-        Math.random()
-      )
+        Math.random(),
+      ),
     );
     rectangle.fill = rectFill;
     insertionParent.children.append(rectangle);

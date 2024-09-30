@@ -76,12 +76,17 @@ export const expressCodePlugin: () => Plugin = () => ({
   },
 });
 
-export const runAction = (opts: object, action: string) => {
+export const runAction = (config: ExpressConfig, action: string) => {
   if (action === "dependencyCheck") {
     console.log("Checking Dependencies");
     packageSync();
   } else if (action === "copy") {
     console.log("COPY ONLY");
+    fs.readdirSync(process.cwd()).forEach((file) => {
+      if (file.includes("config.ts.timestamp-")) {
+        fs.rmSync(path.join(process.cwd(), file));
+      }
+    });
     fs.cpSync(".tmp", "dist", { recursive: true });
   }
   process.exit();

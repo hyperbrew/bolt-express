@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, PluginOption } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte"; // BOLT_SVELTE_ONLY
 import sveltePreprocess from "svelte-preprocess"; // BOLT_SVELTE_ONLY
 import react from "@vitejs/plugin-react"; // BOLT_REACT_ONLY
@@ -9,37 +9,14 @@ import {
   runAction,
 } from "vite-express-plugin";
 
-import { cpSync, rmSync, readdirSync } from "fs";
-import { join } from "path";
 import { config } from "./express.config";
 
 const action = process.env.ACTION;
-const mode = process.env.MODE || process.argv[4] || "";
-console.log("ACTION", action);
-console.log("MODE", mode);
+const mode = process.env.MODE || "";
 
-if (action)
-  runAction(
-    {},
-    // config,
-    action
-  );
-
-if (mode === "copy") {
-  console.log("COPY ONLY");
-  cpSync(".tmp", "dist", { recursive: true });
-  readdirSync(process.cwd()).forEach((file) => {
-    if (file.includes("config.ts.timestamp-")) {
-      rmSync(join(process.cwd(), file));
-    }
-  });
-
-  process.exit();
-}
-
+if (action) runAction(config, action);
 expressPluginInit(mode);
 
-// https://vitejs.dev/config/
 export default defineConfig({
   define: {
     "process.env.HMR_PORT": JSON.stringify(config.hmrPort),
@@ -48,17 +25,20 @@ export default defineConfig({
     react(), // BOLT_REACT_ONLY
     vue(), // BOLT_VUE_ONLY
     svelte({ preprocess: sveltePreprocess({ typescript: true }) }), // BOLT_SVELTE_ONLY
+    //@ts-ignore
     expressPlugin(config, mode),
   ],
   base: "./",
   build: {
     outDir: ".tmp",
-    emptyOutDir: false, //mode !== "dev",
+    emptyOutDir: false,
   },
   css: {
     preprocessorOptions: {
       scss: {
+        quietDeps: true,
         api: "modern",
+        silenceDeprecations: ["legacy-js-api"],
       },
     },
   },

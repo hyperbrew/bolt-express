@@ -1069,10 +1069,10 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-bolt-express@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/bolt-express/-/bolt-express-0.0.7.tgz#4190ccf4ebe196ee7c073471f186864fe0989059"
-  integrity sha512-6eSDJXTGIGcmnmg1A0BdN1GwN1CyEtkyDLO7A2UGFumCZt3c84IQvBxp6bMqze5cZSz5AK9MliaMAAEk0WNy6Q==
+bolt-express@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/bolt-express/-/bolt-express-0.0.8.tgz#6a4c5aa9ddaced7a5e424ae6b40e9755ac7525d4"
+  integrity sha512-o3+1q1ZstA0NJ/51qKv0gfwU9sk38S3JaaVvkkF8dpfTiKUM++Jk+APycDhUNKkL5FVHldkgjSHK6LqfjufYyw==
   dependencies:
     react "^18.3.1"
     react-dom "^18.3.1"

@@ -2,7 +2,10 @@ import { defineConfig } from "vite";
 import { expressCodePlugin } from "vite-express-plugin";
 
 export default defineConfig({
-  plugins: [expressCodePlugin()],
+  plugins: [
+    //@ts-ignore
+    expressCodePlugin(),
+  ],
   build: {
     emptyOutDir: false,
     outDir: ".tmp",

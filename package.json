@@ -1,16 +1,16 @@
 {
   "name": "bolt-express",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "scripts": {
     "dev": "vite build --mode staging && run-p devmain serve_copy",
     "build": "vite build --mode build",
     "serve": "ccweb-add-on-scripts start --use \"vite build --mode build\" --src=dummy",
-    "serve_copy": "ccweb-add-on-scripts start --use \"vite build --mode copy\" --src=src-code",
+    "serve_copy": "ccweb-add-on-scripts start --use \"cross-env ACTION=copy vite build --mode copy\" --src=src-code",
     "devmain": "cross-env MODE=dev vite --mode dev",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
-    "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
     "dep": "cross-env ACTION=dependencyCheck vite",
     "zip": "cross-env MODE=zip vite build"
   },
@@ -26,13 +26,13 @@
     "cross-env": "^7.0.3",
     "npm-run-all": "^4.1.5",
     "parallel": "^1.2.0",
-    "sass": "^1.75.0",
+    "sass": "^1.79.4",
     "svelte": "^4.2.18",
     "svelte-check": "^3.8.5",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
-    "vite-express-plugin": "^0.0.5",
-    "vite": "^5.4.1"
+    "vite": "^5.4.8",
+    "vite-express-plugin": "^0.0.8"
   },
   "dependencies": {
     "react": "^18.3.1",
