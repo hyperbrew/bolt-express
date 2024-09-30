@@ -23,7 +23,7 @@ onMounted(() => {});
 <template>
   <main>
     <!-- BOLT_SAMPLECODE_START -->
-    <a href="https://hyperbrew.co/resources/bolt-figma/" target="_blank">
+    <a href="https://hyperbrew.co/resources/bolt-express/" target="_blank">
       <img :src="boltIconLight" alt="" />
     </a>
     <div class="stack-icons">

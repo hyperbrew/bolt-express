@@ -28,7 +28,7 @@ export const App = () => {
         {/* BOLT_SAMPLECODE_START */}
         <a
           className="bolt-icon"
-          href="https://hyperbrew.co/resources/bolt-figma/"
+          href="https://hyperbrew.co/resources/bolt-express/"
           target="_blank"
         >
           <img src={boltIconLight} alt="" />

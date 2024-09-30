@@ -1,6 +1,6 @@
 {
   "name": "bolt-express",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "type": "module",
   "scripts": {
     "dev": "vite build --mode staging && run-p devmain serve_copy",
