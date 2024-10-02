@@ -7,7 +7,7 @@
     "dev": "vite build --mode staging && run-p devmain serve_copy",
     "build": "vite build --mode build",
     "serve": "ccweb-add-on-scripts start --use \"vite build --mode build\" --src=dummy",
-    "serve_copy": "ccweb-add-on-scripts start --use \"vite build --mode copy\" --src=src-code",
+    "serve_copy": "ccweb-add-on-scripts start --use \"cross-env ACTION=copy vite build --mode copy\" --src=src-code",
     "devmain": "cross-env MODE=dev vite --mode dev",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
@@ -23,7 +23,7 @@
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
     "@vitejs/plugin-vue": "^5.1.4",
-    "vite-express-plugin": "^0.0.5",
+    "vite-express-plugin": "^0.0.10",
     "sass": "^1.79.4"
   },
   "dependencies": {

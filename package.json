@@ -1,6 +1,6 @@
 {
   "name": "bolt-express",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "type": "module",
   "scripts": {
     "dev": "vite build --mode staging && run-p devmain serve_copy",
@@ -32,7 +32,7 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
-    "vite-express-plugin": "^0.0.8"
+    "vite-express-plugin": "^0.0.10"
   },
   "dependencies": {
     "react": "^18.3.1",
