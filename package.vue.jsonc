@@ -24,6 +24,7 @@
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
     "@vitejs/plugin-vue": "^5.1.4",
+    "vite-plugin-mkcert": "^1.17.6",
     "vite-express-plugin": "^0.0.10",
     "sass": "^1.79.4"
   },

@@ -30,7 +30,10 @@ const port = import.meta.env.HMR_PORT || process.env.HMR_PORT || "";
 
 export const initBolt = async () => {
   console.log("initBolt");
-  const devUrl = `http://localhost:${port}/`;
-  if (mode === "staging" && location.href !== devUrl) location.href = devUrl;
+  const devUrl = `https://localhost:${port}/`;
+  if (mode === "staging" && location.href !== devUrl) {
+    console.log("Redirecting to dev server: ", devUrl);
+    location.href = devUrl;
+  }
   await getRuntime().then((res) => (sandbox = res));
 };

@@ -36,8 +36,10 @@
     "vite-express-plugin": "^0.0.10"
   },
   "dependencies": {
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "vite-plugin-mkcert": "^1.17.6",
     "vue": "^3.5.10"
   },
   "files": [

@@ -34,7 +34,7 @@ export const manifest: PluginManifest = {
 const extraPrefs = {
   copyZipAssets: ["public-zip/*"],
   servePort: 5241,
-  hmrPort: 5173,
+  hmrPort: 5174,
 };
 
 export const config: ExpressConfig = {
