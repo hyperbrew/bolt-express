@@ -24,8 +24,8 @@ export const manifest: PluginManifest = {
       main: "index.html",
       documentSandbox: "code.js",
       permissions: {
-        sandbox: ["allow-popups", "allow-presentation", "allow-downloads"],
-        oauth: [],
+        sandbox: ["allow-popups", "allow-popups-to-escape-sandbox", "allow-presentation", "allow-downloads"],
+        oauth: ["*"]
       },
     },
   ],

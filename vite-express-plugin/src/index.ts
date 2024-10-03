@@ -81,13 +81,13 @@ export const runAction = (config: ExpressConfig, action: string) => {
     console.log("Checking Dependencies");
     packageSync();
   } else if (action === "copy") {
-    console.log("COPY ONLY");
+    console.log("COPY ONLY from: ", process.cwd());
     fs.readdirSync(process.cwd()).forEach((file) => {
       if (file.includes("config.ts.timestamp-")) {
         fs.rmSync(path.join(process.cwd(), file));
       }
     });
-    fs.cpSync(".tmp", "dist", { recursive: true });
+    fs.cpSync(path.join(process.cwd(), ".tmp"), path.join(process.cwd(), "dist"), { recursive: true });
   }
   process.exit();
 };

@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@adobe/ccweb-add-on-analytics@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-analytics/-/ccweb-add-on-analytics-2.4.0.tgz#16f80b9128cb10d8c64a1fbed5590eea2c56f7a2"
-  integrity sha512-GEjVJFvxQymZFlhqabWZnwmvN570eRJf4Y8G/sZZY+flbdp+4yMaQUAfi4Ck/eo+31afNBfNfA9G5Y/eEbMl+w==
+"@adobe/ccweb-add-on-analytics@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-analytics/-/ccweb-add-on-analytics-2.4.1.tgz#31afa00b3870bb46c37cd4c9168bbc4935f58412"
+  integrity sha512-4syw8k50X/gGPVuzbQQN9kmYNiQfQP1/bQsN6C50ixVoUolWwkCQJHjnt0timq92oVX2uayhSoQjb5kwf1tC2g==
   dependencies:
-    "@adobe/ccweb-add-on-core" "2.4.0"
+    "@adobe/ccweb-add-on-core" "2.4.1"
     "@swc/helpers" "0.5.12"
     axios "1.6.0"
     chalk "4.1.1"
@@ -17,12 +17,12 @@
     reflect-metadata "0.1.13"
     tslib "2.6.2"
 
-"@adobe/ccweb-add-on-core@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-core/-/ccweb-add-on-core-2.4.0.tgz#c0488c758002b486ef76aab73fa25f00988ac877"
-  integrity sha512-iuVSmLQWXSFoTMZTf8w8sA1PLmjlzBLixgwkmoZKVJrIkzaciavYHx210c4lrQHqQDa+lrDo2+hLY4bFNmpVTQ==
+"@adobe/ccweb-add-on-core@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-core/-/ccweb-add-on-core-2.4.1.tgz#206782db295822096d161b61d60c89525d0960ca"
+  integrity sha512-fSK4rxETbONFD/43RrDCAK6+6ihekOW2wliRvS1E7HKsh9uG/6S4jYEO+BUmubU9E2VlsmFRtkp7HlLdO70OVA==
   dependencies:
-    "@adobe/ccweb-add-on-manifest" "2.4.0"
+    "@adobe/ccweb-add-on-manifest" "2.4.1"
     "@swc/helpers" "0.5.12"
     application-config-path "0.1.0"
     chalk "4.1.1"
@@ -63,26 +63,25 @@
     tmp "^0.0.33"
     tslib "^1.10.0"
 
-"@adobe/ccweb-add-on-manifest@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-manifest/-/ccweb-add-on-manifest-2.4.0.tgz#65c45eeb37a6b7a6c09fec028eb130d519263f0a"
-  integrity sha512-5LsE89e9XnHKuoXl018nBe9MvoTONMSxldzYpjjbdmX4bv0Hk9qEPrZPComX43CZjvwUOQL/dELXIgBhcOCZxA==
+"@adobe/ccweb-add-on-manifest@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-manifest/-/ccweb-add-on-manifest-2.4.1.tgz#fcff06be66b0ad21d97d5e8a953f5810de46a361"
+  integrity sha512-5JajeeA6zwwy1V5RvY4nQUBD7YDVPHhN/Umtf+m3T1NB/UoxXNQA0EWNmhCL3BqQh4d/oTPyY+XaIyWVNcFZXw==
   dependencies:
     "@swc/helpers" "0.5.12"
     tslib "2.6.2"
 
-"@adobe/ccweb-add-on-scripts@^2.0.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-scripts/-/ccweb-add-on-scripts-2.4.0.tgz#305311a728ef1d1a509105f9bbd512ff9f54dbe6"
-  integrity sha512-KULkcLCRU2jM8kVtOFywm+HHV4Q98dfBrHz5ijSV+ZX0vO2Hl91LtyoPegm+YDMXs5fm9fe2z02a3I9nbmtcag==
+"@adobe/ccweb-add-on-scripts@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-scripts/-/ccweb-add-on-scripts-2.4.1.tgz#b19ab266ba9ea5a8363a29a9d7a2cebfaf162c85"
+  integrity sha512-Ulu9ng8FkxhPHcciUdOjLzCWwhbx3Gqp6b4ccYUUpMygeXF1tPFIEMRORJIg4EUojWuXm6CRf/3x71bL1oKkZw==
   dependencies:
-    "@adobe/ccweb-add-on-analytics" "2.4.0"
-    "@adobe/ccweb-add-on-core" "2.4.0"
+    "@adobe/ccweb-add-on-analytics" "2.4.1"
+    "@adobe/ccweb-add-on-core" "2.4.1"
     "@adobe/ccweb-add-on-devcert" "0.1.1"
-    "@adobe/ccweb-add-on-manifest" "2.4.0"
-    "@adobe/ccweb-add-on-ssl" "2.4.0"
+    "@adobe/ccweb-add-on-manifest" "2.4.1"
+    "@adobe/ccweb-add-on-ssl" "2.4.1"
     "@oclif/core" "2.8.0"
-    "@swc/helpers" "0.5.12"
     adm-zip "0.5.9"
     chokidar "3.5.3"
     cors "2.8.5"
@@ -95,7 +94,7 @@
     tslib "2.6.2"
     ws "8.9.0"
 
-"@adobe/ccweb-add-on-sdk-types@^1.3.0":
+"@adobe/ccweb-add-on-sdk-types@^1.9.1":
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-sdk-types/-/ccweb-add-on-sdk-types-1.9.1.tgz#029e46f39fb8b773cf577bd044d0a9e20b83bb35"
   integrity sha512-ZWqFVT7c66akIYAEbtTBfw20lN7fUfE/P+pO1zM0lxhCKbMrBF0TBLMgFkkevki7rA2jqW6NCeVv+fGq0pemRg==
@@ -104,13 +103,13 @@
     gl-matrix "3.3.0"
     tslib "2.6.2"
 
-"@adobe/ccweb-add-on-ssl@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-ssl/-/ccweb-add-on-ssl-2.4.0.tgz#2db7a00280bcedf3485b3ea1c18e72ab3f1089ad"
-  integrity sha512-3bNgTwqS+ruku1qyT8rIrYTtLNPiyJzlhT4VL5GTw+cAeovCh+dqFnOw4ixyjiBp1tjbRHUzLu4Zq1gC+NBsBA==
+"@adobe/ccweb-add-on-ssl@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-ssl/-/ccweb-add-on-ssl-2.4.1.tgz#540aba02024ae802f7bf0fb18393f291eccd4be5"
+  integrity sha512-tHBa3MgLPVYPIBGOLq5zwB8mOno6MlxhH8wzwfj63Ll0ahfzt2S0Gzm8BSsCnLqWVLpjVFwZfLPW9DR9TdmU4g==
   dependencies:
-    "@adobe/ccweb-add-on-analytics" "2.4.0"
-    "@adobe/ccweb-add-on-core" "2.4.0"
+    "@adobe/ccweb-add-on-analytics" "2.4.1"
+    "@adobe/ccweb-add-on-core" "2.4.1"
     "@adobe/ccweb-add-on-devcert" "0.1.1"
     "@oclif/core" "2.8.0"
     "@swc/helpers" "0.5.12"

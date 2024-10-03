@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite build --mode staging && run-p devmain serve_copy",
+    "dev": "vite build --mode staging && run-p devmain serve_copy_simple",
     "build": "vite build --mode build",
     "serve": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dummy",
-    "serve_copy": "ccweb-add-on-scripts start --analytics off --use \"cross-env ACTION=copy vite build --mode copy\" --src=src-code",
+    "serve_copy": "ccweb-add-on-scripts start --analytics off --use \"cross-env ACTION=copy vite build --mode copy\" --src=src-code --verbose",
+    "serve_copy_simple": "ccweb-add-on-scripts start --analytics off --src=\".tmp\"",
     "devmain": "cross-env MODE=dev vite --mode dev",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
