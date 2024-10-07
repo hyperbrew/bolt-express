@@ -88,7 +88,7 @@ Bolt Express Info Page Link: https://hyperbrew.co/resources/bolt-express
 **Create your new Bolt Express project (follow CLI prompts)**
 
 - yarn - `yarn create bolt-express`
-- npm - `npx create-bolt-express`
+- npm - `npx create-bolt-express@latest`
 - pnpm - `pnpm create-bolt-express`
 
 **Change directory to the new project**
