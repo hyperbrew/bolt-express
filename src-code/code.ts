@@ -4,6 +4,8 @@ import { editor, colorUtils } from "express-document-sdk";
 
 const { runtime } = addOnSandboxSdk.instance;
 
+console.log("Sandbox code is running nowww");
+
 const sandboxApi = {
   createBox: (width: number, height: number) => {
     const insertionParent = editor.context.insertionParent;

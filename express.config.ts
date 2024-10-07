@@ -5,8 +5,8 @@ import type {
 import { version } from "./package.json";
 
 export const manifest: PluginManifest = {
-  testId: "bolt-express",
-  name: "Bolt Express",
+  testId: "bolt-express", // BOLT_ID_REPLACE
+  name: "Bolt Express", // BOLT_DISPLAYNAME_REPLACE
   version: "1.0.0",
   manifestVersion: 2,
   requirements: {
@@ -24,8 +24,13 @@ export const manifest: PluginManifest = {
       main: "index.html",
       documentSandbox: "code.js",
       permissions: {
-        sandbox: ["allow-popups", "allow-popups-to-escape-sandbox", "allow-presentation", "allow-downloads"],
-        oauth: ["*"]
+        sandbox: [
+          "allow-popups",
+          "allow-popups-to-escape-sandbox",
+          "allow-presentation",
+          "allow-downloads",
+        ],
+        oauth: ["*"],
       },
     },
   ],
