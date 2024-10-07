@@ -109,11 +109,11 @@ Bolt Express Info Page Link: https://hyperbrew.co/resources/bolt-express
 
 **Setup Keys for development** _(Only Once Per Dev Machine)_
 
-> The first time you debug an Express Addon on a machine you need to setup auth keys by following the CLI prompts. Once you've complted this once with Bolt Express or directly with `ccweb-add-on-scripts` you don't need to do it again on that machine.
+> The first time you debug an Express Addon on a machine you need to setup auth keys by following the CLI prompts. Once you've complted this once with Bolt Express or directly with `@adobe/create-ccweb-add-on` you don't need to do it again on that machine.
 
-- yarn `yarn ccweb`
-- npm `npm run ccweb`
-- pnpm `pnpm ccweb`
+- yarn `yarn cert`
+- npm `npm run cert`
+- pnpm `pnpm cert`
 
 **Run the addon in hot reload mode for development**
 

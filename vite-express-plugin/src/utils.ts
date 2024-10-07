@@ -21,7 +21,7 @@ const serveExpress = (runner: string) => {
     (err, stdout, stderr) => {
       if (err) return console.error(err);
       console.log(stdout);
-    }
+    },
   );
 };
 const devMain = (runner: string) => {
@@ -40,7 +40,7 @@ const devCode = (runner: string) => {
 };
 
 export const startCodeWatcher = (mode: string) => {
-  console.log(`in code watcher MODE: ${mode}`);
+  // console.log(`in code watcher MODE: ${mode}`);
   const exe = process.argv[1];
   const scriptMode = process.argv[3];
   const isDevMode = mode === "dev";

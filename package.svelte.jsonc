@@ -8,6 +8,7 @@
     "build": "vite build --mode build",
     "serve": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dummy",
     "ccweb": "ccweb-add-on-scripts start --analytics off --src=\".tmp\"",
+    "cert": "npx @adobe/ccweb-add-on-ssl setup --hostname localhost",
     "devmain": "cross-env MODE=dev vite --mode dev",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
@@ -28,7 +29,7 @@
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
     "vite-plugin-mkcert": "^1.17.6",
-    "vite-express-plugin": "^0.0.13",
+    "vite-express-plugin": "^0.0.15",
     "sass": "^1.79.4"
   },
   "dependencies": {}
