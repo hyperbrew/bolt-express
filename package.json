@@ -1,19 +1,18 @@
 {
   "name": "bolt-express",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "type": "module",
   "scripts": {
-    "dev": "vite build --mode staging && run-p devmain serve_copy_simple",
+    "dev": "vite build --mode staging && run-p devmain ccweb",
     "build": "vite build --mode build",
     "serve": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dummy",
-    "serve_copy": "ccweb-add-on-scripts start --analytics off --use \"cross-env ACTION=copy vite build --mode copy\" --src=src-code --verbose",
-    "serve_copy_simple": "ccweb-add-on-scripts start --analytics off --src=\".tmp\"",
+    "ccweb": "ccweb-add-on-scripts start --analytics off --src=\".tmp\"",
     "devmain": "cross-env MODE=dev vite --mode dev",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
+    "zip": "cross-env MODE=zip vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "dep": "cross-env ACTION=dependencyCheck vite",
-    "zip": "cross-env MODE=zip vite build"
+    "dep": "cross-env ACTION=dependencyCheck vite"
   },
   "devDependencies": {
     "@adobe/ccweb-add-on-scripts": "^2.4.1",
@@ -33,7 +32,7 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
-    "vite-express-plugin": "^0.0.10"
+    "vite-express-plugin": "^0.0.13"
   },
   "dependencies": {
     "@vitejs/plugin-basic-ssl": "^1.1.0",

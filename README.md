@@ -85,49 +85,58 @@ Bolt Express Info Page Link: https://hyperbrew.co/resources/bolt-express
 
 ## Quick Start
 
-Create your new Bolt Express project (follow CLI prompts)
+**Create your new Bolt Express project (follow CLI prompts)**
 
 - yarn - `yarn create bolt-express`
 - npm - `npx create-bolt-express`
 - pnpm - `pnpm create-bolt-express`
 
-Change directory to the new project
+**Change directory to the new project**
 
 - `cd project`
 
-Install Dependencies (if not already done by create command)
+**Install Dependencies** (if not already done by create command)
 
 - yarn - `yarn`
 - npm - `npm i`
 - pnpm - `pnpm i`
 
-Build the addon (must run before `dev`, can also run after for panel to work statically without the process)
+**Build the addon** (must run before `dev`, can also run after for panel to work statically without the process)
 
 - yarn `yarn build`
 - npm `npm run build`
 - pnpm `pnpm build`
 
-Run the addon in hot reload mode for development
+**Setup Keys for development** _(Only Once Per Dev Machine)_
 
-_Note: Ensure "Hot reload addon" is checked in Express Addon Development menu_
+> The first time you debug an Express Addon on a machine you need to setup auth keys by following the CLI prompts. Once you've complted this once with Bolt Express or directly with `ccweb-add-on-scripts` you don't need to do it again on that machine.
+
+- yarn `yarn ccweb`
+- npm `npm run ccweb`
+- pnpm `pnpm ccweb`
+
+**Run the addon in hot reload mode for development**
+
+> The first time you run `yarn dev` you will be promted to make a dev cert.
+>
+> - On Windows, press OK on the popup dialog.
+> - On MacOS, enter your password in the CLI when prompted and press enter to create the cert.
+>
+> You won't need to do this in the future.
 
 - yarn `yarn dev`
 - npm `npm run dev`
 - pnpm `pnpm dev`
 
-Bundles your addon and specified assets from `copyZipAssets` to a zip archive in the `./zip` folder
+**Bundle your addon** and specified assets from `copyZipAssets` to a zip archive in the `./zip` folder
 
 - yarn `yarn zip`
 - npm `npm run zip`
 - pnpm `pnpm zip`
 
-Write frontend UI code in `src/main.svelte` / `src/main.tsx` / `src/main.vue`
-
-Write backend express code in `src-code/code.ts`
-
 ### Add Addon to Express
 
-1. Open Express
+1. Open Express in your browser (Edge on Windows, Safari on MacOS)
 2. Open Document
 3. Select Add-ons from left sidebar
 4. Select "Your add-ons"
@@ -138,6 +147,11 @@ Write backend express code in `src-code/code.ts`
 
 1. Launch your addon by clicking on the icon of your Addon in the "In Development" section of "Your Add-ons"
 2. Open the Dev Tools by right click > Inspect
+
+### Start Coding
+
+- Write frontend UI code in `src/main.svelte` / `src/main.tsx` / `src/main.vue`
+- Write backend express code in `src-code/code.ts`
 
 ---
 

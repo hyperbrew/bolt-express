@@ -1,6 +1,6 @@
 {
   "name": "vite-express-plugin",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "license": "MIT",
   "description": "A Vite Plugin for building Express Plugin Panels",
   "main": "lib/index.js",
@@ -20,8 +20,8 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@adobe/ccweb-add-on-scripts": "^2.0.0",
-    "@adobe/ccweb-add-on-sdk-types": "^1.3.0",
+    "@adobe/ccweb-add-on-scripts": "^2.4.1",
+    "@adobe/ccweb-add-on-sdk-types": "^1.9.1",
     "@types/node": "^20.14.0",
     "rollup": "^4.18.0",
     "vite": "^5.4.8"

@@ -9,7 +9,7 @@ import {
   runAction,
 } from "vite-express-plugin";
 
-import mkcert from 'vite-plugin-mkcert';
+import mkcert from "vite-plugin-mkcert";
 
 import { config } from "./express.config";
 
@@ -29,7 +29,7 @@ export default defineConfig({
     svelte({ preprocess: sveltePreprocess({ typescript: true }) }), // BOLT_SVELTE_ONLY
     //@ts-ignore
     expressPlugin(config, mode),
-    mkcert()
+    mkcert(),
   ],
   base: "./",
   build: {
@@ -47,7 +47,6 @@ export default defineConfig({
     },
   },
   server: {
-
     port: config.hmrPort,
   },
 });
