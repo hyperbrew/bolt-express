@@ -7,7 +7,7 @@ import { version } from "./package.json";
 export const manifest: PluginManifest = {
   testId: "bolt-express", // BOLT_ID_REPLACE
   name: "Bolt Express", // BOLT_DISPLAYNAME_REPLACE
-  version: "1.0.0",
+  version,
   manifestVersion: 2,
   requirements: {
     apps: [
