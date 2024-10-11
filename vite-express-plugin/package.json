@@ -1,6 +1,6 @@
 {
   "name": "vite-express-plugin",
-  "version": "0.0.15",
+  "version": "0.0.17",
   "license": "MIT",
   "description": "A Vite Plugin for building Express Plugin Panels",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
     "publish-beta": "npm publish --access public --tag beta"
   },
   "dependencies": {
-    "meta-bolt": "^0.0.12",
+    "meta-bolt": "^0.0.14",
     "typescript": "^5.4.5"
   },
   "devDependencies": {

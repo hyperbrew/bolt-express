@@ -53,7 +53,7 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
       const zipDir = path.join(process.cwd(), "zip");
       const srcDir = path.join(process.cwd(), "dist");
       const name = `${config.manifest.name}_${config.version}`;
-      await zipPackage(name, zipDir, srcDir, config.copyZipAssets, true);
+      await zipPackage(name, zipDir, srcDir, config.copyZipAssets, false);
     }
   },
 });
@@ -87,7 +87,11 @@ export const runAction = (config: ExpressConfig, action: string) => {
         fs.rmSync(path.join(process.cwd(), file));
       }
     });
-    fs.cpSync(path.join(process.cwd(), ".tmp"), path.join(process.cwd(), "dist"), { recursive: true });
+    fs.cpSync(
+      path.join(process.cwd(), ".tmp"),
+      path.join(process.cwd(), "dist"),
+      { recursive: true },
+    );
   }
   process.exit();
 };
