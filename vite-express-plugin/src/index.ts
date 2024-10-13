@@ -28,6 +28,11 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
   mode?: string,
 ) => ({
   name: "vite-express-plugin",
+  transformIndexHtml(html) {
+    return html
+      .replace('<script type="module" crossorigin', '<script type="module"')
+      .replace('<link rel="stylesheet" crossorigin', '<link rel="stylesheet"');
+  },
   writeBundle() {
     // setTimeout(() => {
     // if (fs.existsSync(dist)) {
@@ -40,6 +45,7 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
       path.join(tmp, "manifest.json"),
       JSON.stringify(config.manifest, null, 2),
     );
+    //#
     if (mode === "build" || mode === "zip") {
       emptyFolder(dist);
       copyFilesRecursively(tmp, dist, () => {
