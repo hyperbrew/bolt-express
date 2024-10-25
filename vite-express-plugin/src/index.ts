@@ -48,9 +48,11 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
     //#
     if (mode === "build" || mode === "zip") {
       emptyFolder(dist);
-      copyFilesRecursively(tmp, dist, () => {
-        triggerExpressRefresh(path.join(dist, index));
-      });
+      fs.cpSync(tmp, dist, { recursive: true });
+      // copyFilesRecursively(tmp, dist, () => {
+      //   console.log("Files Copied");
+      //   triggerExpressRefresh(path.join(dist, index));
+      // });
       // }, 100);
     }
   },

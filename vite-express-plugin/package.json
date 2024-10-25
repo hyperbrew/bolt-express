@@ -1,6 +1,6 @@
 {
   "name": "vite-express-plugin",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "license": "MIT",
   "description": "A Vite Plugin for building Express Plugin Panels",
   "main": "lib/index.js",
