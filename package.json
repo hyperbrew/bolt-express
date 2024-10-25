@@ -1,6 +1,6 @@
 {
   "name": "bolt-express",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "type": "module",
   "scripts": {
     "dev": "vite build --mode staging && run-p devmain ccweb",
@@ -33,7 +33,7 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
-    "vite-express-plugin": "^0.0.17"
+    "vite-express-plugin": "^0.0.19"
   },
   "dependencies": {
     "@vitejs/plugin-basic-ssl": "^1.1.0",

@@ -4162,10 +4162,10 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vite-express-plugin@^0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/vite-express-plugin/-/vite-express-plugin-0.0.17.tgz#1b31df29762cac78fb20e908101b2fefff7c9638"
-  integrity sha512-FVYv9o1llwkYuERB5Z1Qiww3Fu8LWuUfaVxPZpQHM0ibCjsQrFyR8rm4wnl0HjMJQAOldu3z4mPAGdBktJEKwg==
+vite-express-plugin@^0.0.19:
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/vite-express-plugin/-/vite-express-plugin-0.0.19.tgz#81f0caf0705e8e6b6de6fd3011948a4950368b50"
+  integrity sha512-PiYCVWCqCpytFkWGOwlvJwQyaWud9y99uHeKKKp0Z4JvjWseExn50g2g2ov2Cp1pRpH1ZMnXRGO+H2JX7ueGqQ==
   dependencies:
     meta-bolt "^0.0.14"
     typescript "^5.4.5"
