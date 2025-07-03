@@ -1,6 +1,6 @@
 {
   "name": "bolt-express",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "type": "module",
   "scripts": {
     "dev": "vite build --mode staging && run-p devmain ccweb",
@@ -16,10 +16,10 @@
     "dep": "cross-env ACTION=dependencyCheck vite"
   },
   "devDependencies": {
-    "@adobe/ccweb-add-on-scripts": "^2.4.1",
-    "@adobe/ccweb-add-on-sdk-types": "^1.9.1",
+    "@adobe/ccweb-add-on-scripts": "^3.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
     "@tsconfig/svelte": "^5.0.4",
+    "@types/adobe__ccweb-add-on-sdk": "^1.3.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
@@ -33,7 +33,7 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
-    "vite-express-plugin": "^0.0.19"
+    "vite-express-plugin": "^0.0.20"
   },
   "dependencies": {
     "@vitejs/plugin-basic-ssl": "^1.1.0",

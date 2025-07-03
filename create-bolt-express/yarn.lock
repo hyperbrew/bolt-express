@@ -1188,10 +1188,10 @@ before-after-hook@^2.2.0:
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.2.3.tgz#c51e809c81a4e354084422b9b26bad88249c517c"
   integrity sha512-NzUnlZexiaH/46WDhANlyR2bXRopNg4F/zuSA3OpZnllCUgRaOF2znDioDWrmbNVsuZk6l9pMquQB38cfBZwkQ==
 
-bolt-express@^0.0.19:
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/bolt-express/-/bolt-express-0.0.19.tgz#f7581a3e3cc6402905cf76c7d93fa8607042288a"
-  integrity sha512-2WKq+aMmI8eCa+nN8hrkEeBKNI4wX0IwZm75iLkdBZDLOLBOrt/AyEeckCCd9s6Rss6KhT9AM+eZp+vmGX+tbg==
+bolt-express@^0.0.20:
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/bolt-express/-/bolt-express-0.0.20.tgz#b9db001de5227c27ee63a5bbf431806af78d72a7"
+  integrity sha512-0dWuy2+EKlDB6ZRS/mDbZZm54lCee33lgRjaFj8Ws2piTCBJe9/HNwyeJDQUgeKtFnTbNvUVMjdKWNy0i0H4iQ==
   dependencies:
     "@vitejs/plugin-basic-ssl" "^1.1.0"
     react "^18.3.1"
