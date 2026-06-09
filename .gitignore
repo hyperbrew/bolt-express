@@ -1,3 +1,4 @@
+*.pem
 .ref
 # Logs
 logs

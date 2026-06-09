@@ -1,0 +1,34 @@
+{
+  "addOns": [
+    {
+      "addonId": "bolt-express",
+      "versionString": "0.0.20",
+      "supportedLanguages": ["en-US"],
+      "supportedApps": ["Express"],
+      "downloadUrl": "https://localhost:5242/bolt-express/manifest.json",
+      "addon": {
+        "localizedMetadata": {
+          "name": "Bolt Express"
+        }
+      },
+      "entryPoints": [
+        {
+          "type": "panel",
+          "id": "panel1",
+          "main": "index.html",
+          "documentSandbox": "code.js",
+          "permissions": {
+            "sandbox": [
+              "allow-popups",
+              "allow-popups-to-escape-sandbox",
+              "allow-presentation",
+              "allow-downloads"
+            ],
+            "oauth": ["*"]
+          },
+          "discoverable": true
+        }
+      ]
+    }
+  ]
+}
