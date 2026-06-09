@@ -39,10 +39,15 @@ async function main() {
 
   const app = express();
   app.use(cors());
+  app.use((req, res, next) => {
+    res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+    res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+    next();
+  });
   app.get("/", (req, res) => {
     res.send(addOnResponse);
   });
-  app.use(`/${config.manifest.testId}`, express.static("dist"));
+  app.use(`/${config.manifest.testId}`, express.static(".tmp"));
 
   const server = https.createServer(
     {

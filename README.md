@@ -136,12 +136,35 @@ Bolt Express Info Page Link: https://hyperbrew.co/resources/bolt-express
 
 ### Add Addon to Express
 
-1. Open Express in your browser (Edge on Windows, Safari on MacOS)
+1. Open Express in your browser\* (Chrome, Edge, and chromium-based browsers require additional steps, see more below)
 2. Open Document
 3. Select Add-ons from left sidebar
 4. Select "Your add-ons"
 5. Toggle "Add-on testing"
 6. With correct serve port number, check "I Understand..." and press "Connect"
+
+#### Note on Chrome, Edge, and Chromium-based browsers
+
+In order to test and debug on Chromium-based browsers including Chrome, Edge, Brave, and others, you must either allow "Acces other apps and services on this device" or disable "Local Access Restriction".
+
+Route A: Allow local access (recommended)
+
+- Launch your browser
+- Navigate to express.adobe.com
+- You will be prompted with a permission dialog reading: `express.adobe.com wants to access other apps and services on this device`.
+- Press "Allow"
+- Continue with previous steps to load your addon
+
+Route B: Disable Local Access Restriction (not recommended)
+
+_\*It is important to turn this setting back on when you're not debugging to keep yourself secure._
+
+- Go to `chrome://flags/#local-network-access-check` (some browsers use different prefixes)
+- Set "Local Network Access Checks" to `Disabled`
+- Restart Chrome
+- Continue with previous steps to load your addon
+
+More Details from Adobe: https://developer.adobe.com/express/add-ons/docs/guides/getting-started/local-development/known-issues-limitations#chrome-local-network-access-restriction
 
 ### Load and Debug Addon
 
