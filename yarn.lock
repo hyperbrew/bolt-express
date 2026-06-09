@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@adobe/ccweb-add-on-analytics@3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-analytics/-/ccweb-add-on-analytics-3.8.0.tgz#8812247f100c284fcdaeb411af56de60547b736b"
-  integrity sha512-O83/CawT0NFNcAoSwudKQodaLu19WJ8X/E10MdO/flVVPLimZTuiAJ41tlgnxpj/K2LG3OzTpA9Wrdu3cQikAA==
+"@adobe/ccweb-add-on-analytics@3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-analytics/-/ccweb-add-on-analytics-3.9.0.tgz#cc4e4d2dd28097506f624315e7d7e421c4b52e88"
+  integrity sha512-Mm7LOcYYKDW0AfA11ORs3Lg/eaQkvGM27X1hLQGopepSakgPi6xlQ3t/OZffyUJkxmPxqdVb1xflIW8XwEU7IQ==
   dependencies:
-    "@adobe/ccweb-add-on-core" "3.8.0"
+    "@adobe/ccweb-add-on-core" "3.9.0"
     "@oclif/core" "4.2.8"
     "@swc/helpers" "0.5.17"
     axios "1.8.4"
@@ -18,12 +18,12 @@
     reflect-metadata "0.1.13"
     tslib "2.7.0"
 
-"@adobe/ccweb-add-on-core@3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-core/-/ccweb-add-on-core-3.8.0.tgz#acd136a6e08621f7b6f4a988de6a1805ae1b5387"
-  integrity sha512-+RFcsinPPIUao2KNCr0kkdUKbOt5GC7EzEB9wYlsrMQ3nNvMQzXuEwW8S1ahdMsl/wl+w0Q5egKlBv+DzEWxnw==
+"@adobe/ccweb-add-on-core@3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-core/-/ccweb-add-on-core-3.9.0.tgz#eb2e4fc11441a225e20c012f2ed1c9362a0b85bb"
+  integrity sha512-u0LHohCZ/541EDgXoOpRdffhRHsoXUs5FrJcsGwXgMLFX0vh/2w+fLMQK5HxUMrO5d68rdqLNNrPL2EXiJVFVA==
   dependencies:
-    "@adobe/ccweb-add-on-manifest" "3.8.0"
+    "@adobe/ccweb-add-on-manifest" "3.9.0"
     "@swc/helpers" "0.5.17"
     application-config-path "0.1.0"
     chalk "4.1.1"
@@ -64,23 +64,23 @@
     tmp "^0.0.33"
     tslib "^1.10.0"
 
-"@adobe/ccweb-add-on-manifest@3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-manifest/-/ccweb-add-on-manifest-3.8.0.tgz#91cd097077883e6f0d033f4a9ec490a192e75b55"
-  integrity sha512-hDyQ9z9wRLz9k7DSpIYNrGvF57eXTDaEzKnkIjd0uBgEEPfxIsu+VEO4kz82Q21l7/hZ/G0S/BCcOSmyW7NkGQ==
+"@adobe/ccweb-add-on-manifest@3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-manifest/-/ccweb-add-on-manifest-3.9.0.tgz#2e32243bc71f0c18ffa22310e875ba322b3727f3"
+  integrity sha512-WqFP5zuAfbF1vvW4u7jYBCT7cljpHQqNhCMUEmL7cmnm5h3PE51L782+QoXkhkgQnZQHwLO9+7mfB2NAkW2NtA==
   dependencies:
     "@swc/helpers" "0.5.17"
     tslib "2.7.0"
 
-"@adobe/ccweb-add-on-scripts@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-scripts/-/ccweb-add-on-scripts-3.8.0.tgz#ee73553fdb3faec0c42dc4a15f5d6e1c45c77ee1"
-  integrity sha512-WDTHb9tQtbQTv4QSJeCARsocDxH3PcxYAYWiyvCuP3m2PPYJ992hJv5Ij42SO9DLXPRWJTLl/31fFtBW+3Qw3Q==
+"@adobe/ccweb-add-on-scripts@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-scripts/-/ccweb-add-on-scripts-3.9.0.tgz#dfb189d21dfb0f804df1bff05aa8090e918fe5c9"
+  integrity sha512-lYFRMZvSAtnLSXWSK5qI3y7uwaSdv/lK4tsI6/V5hq6864JYfFZwarethalRXlUkar2LAZMIdCwz4EfU8b45AQ==
   dependencies:
-    "@adobe/ccweb-add-on-analytics" "3.8.0"
-    "@adobe/ccweb-add-on-core" "3.8.0"
-    "@adobe/ccweb-add-on-manifest" "3.8.0"
-    "@adobe/ccweb-add-on-ssl" "3.8.0"
+    "@adobe/ccweb-add-on-analytics" "3.9.0"
+    "@adobe/ccweb-add-on-core" "3.9.0"
+    "@adobe/ccweb-add-on-manifest" "3.9.0"
+    "@adobe/ccweb-add-on-ssl" "3.9.0"
     "@oclif/core" "4.2.8"
     "@swc/helpers" "0.5.17"
     adm-zip "0.5.9"
@@ -104,13 +104,13 @@
     gl-matrix "3.3.0"
     tslib "2.7.0"
 
-"@adobe/ccweb-add-on-ssl@3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-ssl/-/ccweb-add-on-ssl-3.8.0.tgz#d4adf39acbe16d86f5003883df738298b6e6f3f6"
-  integrity sha512-ohKL2YLcOrThDeb3dWJLGd6WtCcWHS0hdN7WXYVTc5bLNU7A9aSV/sT334rf+fdFvcJvjTYF3wMpnwFx5UGuwA==
+"@adobe/ccweb-add-on-ssl@3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@adobe/ccweb-add-on-ssl/-/ccweb-add-on-ssl-3.9.0.tgz#dc4db0ea9b07fbdac72bfd926791d867d224a0d9"
+  integrity sha512-5hIinC4fFm6mn3nh3qw2PE+so7iAAKhticHkvOah70zj2/dBn3J/gmHZjNdlxiHKsABEvvdqvosY0ce0RaeuMg==
   dependencies:
-    "@adobe/ccweb-add-on-analytics" "3.8.0"
-    "@adobe/ccweb-add-on-core" "3.8.0"
+    "@adobe/ccweb-add-on-analytics" "3.9.0"
+    "@adobe/ccweb-add-on-core" "3.9.0"
     "@adobe/ccweb-add-on-devcert" "0.2.2"
     "@oclif/core" "4.2.8"
     "@swc/helpers" "0.5.17"
