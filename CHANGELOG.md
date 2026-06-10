@@ -1,5 +1,9 @@
 # Bolt UXP Changelog
 
+## Version 1.2.1 (2026-6-10)
+
+- Added Type-Safe UI APIs for calling frontend functions from the sandbox backend
+
 ## Version 1.2.0 (2026-6-9)
 
 - Full support for Chromium-based browsers (see docs)
