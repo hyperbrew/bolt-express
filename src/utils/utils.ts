@@ -15,7 +15,7 @@ export const getRuntime = (): Promise<SandboxProxy> => {
       const { runtime } = AddOnSdk.instance;
       if (!runtime) return console.error("Runtime not found");
       const sandboxProxy = await runtime.apiProxy<SandboxRemoteType>(
-        "documentSandbox" as RuntimeType
+        "documentSandbox" as RuntimeType,
       );
       return resolve(sandboxProxy);
     });
@@ -29,7 +29,7 @@ const mode = import.meta.env.MODE;
 const port = import.meta.env.HMR_PORT || process.env.HMR_PORT || "";
 
 export const initBolt = async () => {
-  console.log("initBolt");
+  console.log(`initBolt [mode: ${mode}]`);
   const devUrl = `https://localhost:${port}/`;
   if (mode === "staging" && location.href !== devUrl) {
     console.log("Redirecting to dev server: ", devUrl);

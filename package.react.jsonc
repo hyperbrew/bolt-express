@@ -7,7 +7,7 @@
     "dev": "vite build --mode staging && run-p devmain ccweb",
     "build": "vite build --mode build",
     "serve": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dummy",
-    "ccweb": "ccweb-add-on-scripts start --analytics off --src=\".tmp\"",
+    "ccweb": "ccweb-add-on-scripts start --analytics off --src=\"dist\"",
     "cert": "npx @adobe/ccweb-add-on-ssl setup --hostname localhost",
     "devmain": "cross-env MODE=dev vite --mode dev",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",

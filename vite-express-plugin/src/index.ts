@@ -39,6 +39,7 @@ const consoleOverride = (name: string) => `
 
 let serverUpdate: Function = () => {};
 const hmrUpdate = () => {
+  console.log("HMR UPDATE");
   serverUpdate();
 };
 
@@ -53,7 +54,7 @@ export const expressPluginInit = (config: ExpressConfig, mode: string) => {
     console.log("addonServer start");
     addonServer(config).then(({ updater, listener }) => {
       serverUpdate = updater;
-      // setTimeout(hmrUpdate, 10000);
+      // setTimeout(hmrUpdate, 10000); // test HMR
       listener();
     });
     console.log("addonServer end");
@@ -87,13 +88,13 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
     // }
     //* write manifest
     fs.writeFileSync(
-      path.join(tmp, "manifest.json"),
+      path.join(dist, "manifest.json"),
       JSON.stringify(config.manifest, null, 2),
     );
     //#
     if (mode === "build" || mode === "zip") {
       emptyFolder(dist);
-      fs.cpSync(tmp, dist, { recursive: true });
+      fs.cpSync(dist, dist, { recursive: true });
       // copyFilesRecursively(tmp, dist, () => {
       //   console.log("Files Copied");
       //   triggerExpressRefresh(path.join(dist, index));

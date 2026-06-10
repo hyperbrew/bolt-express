@@ -212,7 +212,7 @@ const helloWorld = async () => {
 
 ### Info on Build Process
 
-Frontend code is built to the `.tmp` directory temporarily and then copied to the `dist` folder for final. This is done to run the build process outside of the @adobe/ccweb-add-on-scripts process to improve speed in development.
+Frontend code is built to the `dist` directory.
 
 The backend code is bundled into a single `code.js` file.
 
