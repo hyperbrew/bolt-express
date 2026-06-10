@@ -53,13 +53,10 @@ export const expressPluginInit = (config: ExpressConfig, mode: string) => {
   }
   startCodeWatcher(mode);
   if (mode === "dev" || mode === "serve") {
-    console.log("addonServer start");
     addonServer(config).then(({ updater, listener }) => {
       serverUpdate = updater;
-      // setInterval(hmrUpdate, 5000); // test HMR
       listener();
     });
-    console.log("addonServer end");
   }
 };
 

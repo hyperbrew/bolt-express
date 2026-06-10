@@ -5,21 +5,15 @@
   "scripts": {
     "dev": "vite build --mode staging && cross-env MODE=dev vite --mode dev",
     "build": "vite build --mode build",
-    "build_old_cc": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dist",
     "serve": "cross-env MODE=dev vite --mode serve",
-    "ccweb": "ccweb-add-on-scripts start --analytics off --src=\"dist\"",
     "cert": "npx @adobe/ccweb-add-on-ssl setup --hostname localhost",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
     "zip": "cross-env MODE=zip vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "dev_old": "vite build --mode staging && run-p devmain ccweb",
-    "serve_old": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dist",
-    "devmain_old": "cross-env MODE=dev vite --mode dev",
     "dep": "cross-env ACTION=dependencyCheck vite"
   },
   "devDependencies": {
-    "@adobe/ccweb-add-on-scripts": "^3.9.0",
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
     "@tsconfig/svelte": "^5.0.4",
     "@types/adobe__ccweb-add-on-sdk": "^1.3.0",

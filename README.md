@@ -153,6 +153,7 @@ Route A: Allow local access (recommended)
 - Navigate to express.adobe.com
 - You will be prompted with a permission dialog reading: `express.adobe.com wants to access other apps and services on this device`.
 - Press "Allow"
+  - If you don't see a popup, set manually by selecting the Settings Icon (left of URL bar) > Site Settings > Apps on Device > Allow
 - Continue with previous steps to load your addon
 
 Route B: Disable Local Access Restriction (not recommended)

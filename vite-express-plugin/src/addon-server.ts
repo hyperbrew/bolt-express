@@ -7,6 +7,8 @@ import cors from "cors";
 import { WebSocketServer } from "ws";
 import { ExpressConfig } from "./types";
 import { randomUUID } from "crypto";
+import os from "os";
+import pc = require("picocolors");
 
 /**
  * The Addon Server can serve a static or HMR version of the Express Addon
@@ -31,7 +33,12 @@ export const addonServer = async (config: ExpressConfig) => {
     ],
   };
 
-  console.log("[addon-server] Make and install cert");
+  console.log(pc.blue('[addon-server]'),"Make and install cert");
+  if(os.platform() === 'darwin'){
+    console.log(pc.yellow("[addon-server] [cert install]"), `If prompted, enter admin password below and accept certificate popup prompts to install cert for addon server`)
+  }else{
+    console.log(pc.yellow("[addon-server] [cert install]"), `If prompted, accept certificate popup prompts to install cert for addon server`)
+  }
   const certFile = path.join(__dirname, "cert.pem");
   const keyFile = path.join(__dirname, "key.pem");
   await mkcert.generate({
@@ -76,10 +83,10 @@ export const addonServer = async (config: ExpressConfig) => {
     console.log("Server Upgrade request", req.url);
   });
   wss.on("connection", function connection(ws) {
-    console.log("[addon-server] connection!");
+    console.log(pc.blue('[addon-server]'),"connection!");
     ws.on("error", console.error);
     ws.on("message", function message(data) {
-      console.log("[addon-server] received: %s", data);
+      console.log(pc.blue('[addon-server]'),"received: %s", data);
       if (data)
         try {
           const dat = JSON.parse(data.toString());
@@ -94,7 +101,7 @@ export const addonServer = async (config: ExpressConfig) => {
   });
 
   const updater = () => {
-    console.log(`[addon-server] Updating all clients`);
+    console.log(pc.blue('[addon-server]'),`Updating all clients`);
     const msg = {
       messageVersion: 1,
       id: config.manifest.testId!,
@@ -113,7 +120,7 @@ export const addonServer = async (config: ExpressConfig) => {
   };
   const listener = () => {
     server.listen(port, () => {
-      console.log(`[addon-server] Hosting Addon on https://localhost:${port}`);
+      console.log(pc.blue('[addon-server]'),`Hosting Addon on https://localhost:${port}`);
     });
   };
   return { updater, listener };
