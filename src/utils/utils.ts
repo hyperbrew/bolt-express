@@ -11,19 +11,24 @@ export type SandboxProxy = Awaited<
 
 export const getRuntime = (): Promise<SandboxProxy> => {
   return new Promise((resolve, reject) => {
-    AddOnSdk.ready.then(async () => {
-      const { runtime } = AddOnSdk.instance;
-      if (!runtime) return console.error("Runtime not found");
-      const sandboxProxy = await runtime.apiProxy<SandboxRemoteType>(
-        "documentSandbox" as RuntimeType,
-      );
-      return resolve(sandboxProxy);
-    });
+    AddOnSdk.ready
+      .then(async () => {
+        const { runtime } = AddOnSdk.instance;
+        if (!runtime) return console.error("Runtime not found");
+        const sandboxProxy = await runtime.apiProxy<SandboxRemoteType>(
+          "documentSandbox" as RuntimeType,
+        );
+        return resolve(sandboxProxy);
+      })
+      .catch((err) => {
+        console.error("Sandbox SDK Error:", err);
+      });
   });
 };
 
 //@ts-ignore
 export let sandbox: SandboxProxy = {};
+console.log("sandbox", sandbox);
 
 const mode = import.meta.env.MODE;
 const port = import.meta.env.HMR_PORT || process.env.HMR_PORT || "";
@@ -35,5 +40,8 @@ export const initBolt = async () => {
     console.log("Redirecting to dev server: ", devUrl);
     location.href = devUrl;
   }
-  await getRuntime().then((res) => (sandbox = res));
+  getRuntime().then((res) => {
+    sandbox = res;
+    console.log("sandbox", sandbox);
+  });
 };

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite build --mode staging && cross-env MODE=dev vite --mode dev",
     "build": "vite build --mode build",
+    "build_old_cc": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dist",
     "serve": "cross-env MODE=dev vite --mode serve",
     "ccweb": "ccweb-add-on-scripts start --analytics off --src=\"dist\"",
     "cert": "npx @adobe/ccweb-add-on-ssl setup --hostname localhost",

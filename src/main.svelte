@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { sandbox } from "./utils/utils";
+  import { initBolt, sandbox } from "./utils/utils";
 
   // BOLT_SAMPLECODE_START
   import boltIconLight from "./assets/bolt-express-lightmode.svg";

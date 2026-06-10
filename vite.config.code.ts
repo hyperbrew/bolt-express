@@ -1,10 +1,11 @@
 import { defineConfig } from "vite";
 import { expressCodePlugin } from "vite-express-plugin";
+import { config } from "./express.config";
 
 export default defineConfig({
   plugins: [
     //@ts-ignore
-    expressCodePlugin(),
+    expressCodePlugin(config),
   ],
   build: {
     emptyOutDir: false,

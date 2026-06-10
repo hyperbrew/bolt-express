@@ -6,10 +6,12 @@ import express from "express";
 import cors from "cors";
 import { WebSocketServer } from "ws";
 import { ExpressConfig } from "./types";
+import { randomUUID } from "crypto";
 
 /**
  * The Addon Server can serve a static or HMR version of the Express Addon
  * to be attached in Express > Add-ons > Add-on testing
+ * This server also listens for hot reload messages from the code instance of vite
  */
 export const addonServer = async (config: ExpressConfig) => {
   const port = config.servePort;
@@ -70,27 +72,43 @@ export const addonServer = async (config: ExpressConfig) => {
     app,
   );
   const wss = new WebSocketServer({ server });
-
+  server.on("upgrade", (req) => {
+    console.log("Server Upgrade request", req.url);
+  });
   wss.on("connection", function connection(ws) {
+    console.log("[addon-server] connection!");
     ws.on("error", console.error);
     ws.on("message", function message(data) {
       console.log("[addon-server] received: %s", data);
+      if (data)
+        try {
+          const dat = JSON.parse(data.toString());
+          if (dat.action === "hot-reload") {
+            updater();
+          }
+        } catch (e) {
+          //
+        }
     });
     ws.send("something");
   });
 
   const updater = () => {
     console.log(`[addon-server] Updating all clients`);
+    const msg = {
+      messageVersion: 1,
+      id: config.manifest.testId!,
+      action: "SourceCodeChanged",
+      payload: {
+        changedFiles: ["src\\code.js"],
+        isBuildSuccessful: true,
+        isManifestChanged: false,
+        manifest: undefined,
+      },
+    };
     wss.clients.forEach((client) => {
-      client.send(
-        JSON.stringify({
-          addOnId: config.manifest.testId!,
-          changedFiles: ["*"],
-          isBuildSuccessful: true,
-          hasManifestChanged: false,
-          addOnManifest: config.manifest,
-        }),
-      );
+      console.log(`sending message to client`, msg);
+      client.send(JSON.stringify(msg));
     });
   };
   const listener = () => {

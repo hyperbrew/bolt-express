@@ -11,9 +11,11 @@ import {
 import { ExpressConfig } from "./types";
 import { addonServer } from "./addon-server";
 import { listeners } from "process";
+import { WebSocket } from "ws";
 
 const dist = "./dist";
 const index = "./index.html";
+const code = "./code.js";
 
 // ccweb module added this code, might reuse...
 const consoleOverride = (name: string) => `
@@ -46,15 +48,15 @@ const hmrUpdate = () => {
 export const expressPluginInit = (config: ExpressConfig, mode: string) => {
   // fs.mkdirSync(tmp, { recursive: true });
   fs.mkdirSync(dist, { recursive: true });
-  // if (mode === "build" || mode === "zip") {
-  //   emptyFolder(tmp);
-  // }
+  if (mode === "build" || mode === "zip") {
+    emptyFolder(dist);
+  }
   startCodeWatcher(mode);
   if (mode === "dev" || mode === "serve") {
     console.log("addonServer start");
     addonServer(config).then(({ updater, listener }) => {
       serverUpdate = updater;
-      // setTimeout(hmrUpdate, 10000); // test HMR
+      // setInterval(hmrUpdate, 5000); // test HMR
       listener();
     });
     console.log("addonServer end");
@@ -66,6 +68,13 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
   mode?: string,
 ) => ({
   name: "vite-express-plugin",
+  hotUpdate({ modules }) {
+    console.log("hot update");
+    if (mode === "dev") {
+      hmrUpdate();
+    }
+    // return modules.filter(condition);
+  },
   configureServer(server) {
     server.middlewares.use((req, res, next) => {
       // Express requires these headers for addon servers
@@ -112,20 +121,31 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
   },
 });
 
-const triggerHMR = () => {
-  // No built-in way to trigger Vite's HMR reload from outside the root folder
-  // Workaround will read and save index.html file for each panel to triggger reload
-  console.log("Code Change");
-  const txt = fs.readFileSync(index, { encoding: "utf-8" });
-  fs.writeFileSync(index, txt, { encoding: "utf-8" });
-};
-
 let i = 0;
-export const expressCodePlugin: () => Plugin = () => ({
+export const expressCodePlugin: (config: ExpressConfig) => Plugin = (
+  config: ExpressConfig,
+) => ({
   name: "trigger-hmr",
   closeBundle() {
     const isDevMode = process.argv[3] === "--watch";
-    if (isDevMode && i > 0) triggerHMR();
+    if (isDevMode && i > 0) {
+      const port = config.servePort;
+      const target = `wss://localhost:${port}`;
+      const ws = new WebSocket(target, { rejectUnauthorized: false });
+      ws.addEventListener("open", () => {
+        console.log("sending hot reload message");
+        ws.send(JSON.stringify({ action: "hot-reload" }));
+      });
+      ws.addEventListener("message", (event) => {
+        console.log("Message from server: ", event.data);
+      });
+      ws.addEventListener("close", (event) => {
+        console.log("WS connection closed:", event.code, event.reason);
+      });
+      ws.addEventListener("error", (error) => {
+        console.error("WS error:", error);
+      });
+    }
     i++;
   },
 });
