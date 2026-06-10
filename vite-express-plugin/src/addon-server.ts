@@ -79,14 +79,14 @@ export const addonServer = async (config: ExpressConfig) => {
     app,
   );
   const wss = new WebSocketServer({ server });
-  server.on("upgrade", (req) => {
-    console.log("Server Upgrade request", req.url);
-  });
+  // server.on("upgrade", (req) => {
+  //   console.log("Server Upgrade request", req.url);
+  // });
   wss.on("connection", function connection(ws) {
-    console.log(pc.blue('[addon-server]'),"connection!");
+    // console.log(pc.blue('[addon-server]'),"connection made");
     ws.on("error", console.error);
     ws.on("message", function message(data) {
-      console.log(pc.blue('[addon-server]'),"received: %s", data);
+      // console.log(pc.blue('[addon-server]'),"received: %s", data.toString());
       if (data)
         try {
           const dat = JSON.parse(data.toString());
@@ -114,7 +114,6 @@ export const addonServer = async (config: ExpressConfig) => {
       },
     };
     wss.clients.forEach((client) => {
-      console.log(`sending message to client`, msg);
       client.send(JSON.stringify(msg));
     });
   };
