@@ -9,18 +9,23 @@ import {
   zipPackage,
 } from "meta-bolt/dist/plugin-utils";
 import { ExpressConfig } from "./types";
+import { addonServer } from "./addon-server";
 
 const tmp = "./.tmp";
 const dist = "./dist";
 const index = "./index.html";
 
-export const expressPluginInit = (mode: string) => {
+export const expressPluginInit = (config: ExpressConfig, mode: string) => {
   fs.mkdirSync(tmp, { recursive: true });
   fs.mkdirSync(dist, { recursive: true });
   if (mode === "build" || mode === "zip") {
     emptyFolder(tmp);
   }
   startCodeWatcher(mode);
+  if (mode === "dev") {
+    console.log("starting addonserver");
+    addonServer(config);
+  }
 };
 
 export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
@@ -28,6 +33,13 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
   mode?: string,
 ) => ({
   name: "vite-express-plugin",
+  configureServer(server) {
+    server.middlewares.use((req, res, next) => {
+      res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+      res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+      next();
+    });
+  },
   transformIndexHtml(html) {
     return html
       .replace('<script type="module" crossorigin', '<script type="module"')

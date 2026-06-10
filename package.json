@@ -3,7 +3,8 @@
   "version": "0.0.20",
   "type": "module",
   "scripts": {
-    "dev": "vite build --mode staging && run-p devmain ccweb",
+    "dev": "cross-env MODE=dev vite --mode dev",
+    "dev_old": "vite build --mode staging && run-p devmain ccweb",
     "build": "vite build --mode build",
     "serve": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dummy",
     "cserve": "tsx scripts/custom-server.ts",

@@ -1,32 +1,30 @@
 import fs from "fs";
 import https from "https";
-import mkcert from "@mkcert/node";
+import * as mkcert from "@mkcert/node";
 import express from "express";
 import cors from "cors";
 import { WebSocketServer } from "ws";
+import { ExpressConfig } from "./types";
 
-import { config } from "../express.config";
+export const addonServer = async (config: ExpressConfig) => {
+  const port = config.servePort;
+  const addOnResponse = {
+    addOns: [
+      {
+        addonId: config.manifest.testId,
+        versionString: config.manifest.version,
+        supportedLanguages: ["en-US"],
+        supportedApps: config.manifest.requirements.apps.map((app) => app.name),
+        downloadUrl: `https://localhost:${port}/${config.manifest.testId}/manifest.json`,
+        addon: { localizedMetadata: { name: config.manifest.name } },
+        entryPoints: config.manifest.entryPoints.map((entryPoint) => {
+          return { ...entryPoint, discoverable: true };
+        }),
+      },
+    ],
+  };
 
-const PORT = 5242;
-
-const addOnResponse = {
-  addOns: [
-    {
-      addonId: config.manifest.testId,
-      versionString: config.manifest.version,
-      supportedLanguages: ["en-US"],
-      supportedApps: config.manifest.requirements.apps.map((app) => app.name),
-      downloadUrl: `https://localhost:${PORT}/${config.manifest.testId}/manifest.json`,
-      addon: { localizedMetadata: { name: config.manifest.name } },
-      entryPoints: config.manifest.entryPoints.map((entryPoint) => {
-        return { ...entryPoint, discoverable: true };
-      }),
-    },
-  ],
-};
-
-async function main() {
-  console.log("Make and install cert");
+  console.log("[addon-server] Make and install cert");
   await mkcert.generate({
     install: true,
     hosts: ["localhost"],
@@ -34,8 +32,6 @@ async function main() {
     keyFile: "./scripts/key.pem",
   });
   mkcert.installSync();
-
-  console.log(`Starting Custom Server on https://localhost:${PORT}`);
 
   const app = express();
   app.use(cors());
@@ -63,13 +59,12 @@ async function main() {
   wss.on("connection", function connection(ws) {
     ws.on("error", console.error);
     ws.on("message", function message(data) {
-      console.log("received: %s", data);
+      console.log("[addon-server] received: %s", data);
     });
     ws.send("something");
   });
 
-  server.listen(PORT, () => {
-    console.log(`listening on *:${PORT}`);
+  server.listen(port, () => {
+    console.log(`[addon-server] Hosting Addon on https://localhost:${port}`);
   });
-}
-main();
+};
