@@ -8,7 +8,7 @@ export default defineConfig({
   ],
   build: {
     emptyOutDir: false,
-    outDir: ".tmp",
+    outDir: "dist",
     target: "chrome58",
     rollupOptions: {
       external: ["add-on-sdk-document-sandbox", "express-document-sdk"],

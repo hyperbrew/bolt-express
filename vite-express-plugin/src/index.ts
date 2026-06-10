@@ -10,21 +10,53 @@ import {
 } from "meta-bolt/dist/plugin-utils";
 import { ExpressConfig } from "./types";
 import { addonServer } from "./addon-server";
+import { listeners } from "process";
 
-const tmp = "./.tmp";
 const dist = "./dist";
 const index = "./index.html";
 
+// ccweb module added this code, might reuse...
+const consoleOverride = (name: string) => `
+    const prefixString = "[Add-on: " + "${name}" + "]";
+    const originalConsole = window.console;
+    window.console = {
+        ...originalConsole,
+        log: (...args) => originalConsole.log(prefixString, ...args),
+        info: (...args) => originalConsole.info(prefixString, ...args),
+        warn: (...args) => originalConsole.warn(prefixString, ...args),
+        error: (...args) => originalConsole.error(prefixString, ...args),
+        debug: (...args) => originalConsole.debug(prefixString, ...args),
+    };
+    window.addEventListener("error", event => {
+        event.preventDefault();
+        console.error("Uncaught Exception:", event.error);
+    });
+    window.addEventListener("unhandledrejection", event => {
+        event.preventDefault();
+        console.error("Unhandled Promise Rejection:", event.reason);
+    });
+`;
+
+let serverUpdate: Function = () => {};
+const hmrUpdate = () => {
+  serverUpdate();
+};
+
 export const expressPluginInit = (config: ExpressConfig, mode: string) => {
-  fs.mkdirSync(tmp, { recursive: true });
+  // fs.mkdirSync(tmp, { recursive: true });
   fs.mkdirSync(dist, { recursive: true });
-  if (mode === "build" || mode === "zip") {
-    emptyFolder(tmp);
-  }
+  // if (mode === "build" || mode === "zip") {
+  //   emptyFolder(tmp);
+  // }
   startCodeWatcher(mode);
-  if (mode === "dev") {
-    console.log("starting addonserver");
-    addonServer(config);
+  if (mode === "dev" || mode === "serve") {
+    console.log("addonServer start");
+    addonServer(config).then(({ updater, listener }) => {
+      serverUpdate = updater;
+      // setTimeout(hmrUpdate, 10000);
+      listener();
+    });
+    console.log("addonServer end");
   }
 };
 
@@ -35,6 +67,7 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
   name: "vite-express-plugin",
   configureServer(server) {
     server.middlewares.use((req, res, next) => {
+      // Express requires these headers for addon servers
       res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
       res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
       next();
@@ -100,18 +133,6 @@ export const runAction = (config: ExpressConfig, action: string) => {
   if (action === "dependencyCheck") {
     console.log("Checking Dependencies");
     packageSync();
-  } else if (action === "copy") {
-    console.log("COPY ONLY from: ", process.cwd());
-    fs.readdirSync(process.cwd()).forEach((file) => {
-      if (file.includes("config.ts.timestamp-")) {
-        fs.rmSync(path.join(process.cwd(), file));
-      }
-    });
-    fs.cpSync(
-      path.join(process.cwd(), ".tmp"),
-      path.join(process.cwd(), "dist"),
-      { recursive: true },
-    );
   }
   process.exit();
 };

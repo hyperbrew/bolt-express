@@ -33,7 +33,7 @@ export default defineConfig({
   ],
   base: "./",
   build: {
-    outDir: ".tmp",
+    outDir: "dist",
     emptyOutDir: false,
   },
 

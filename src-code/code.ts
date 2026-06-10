@@ -11,6 +11,7 @@ const sandboxApi = {
     const insertionParent = editor.context.insertionParent;
     const rectangle = editor.createRectangle();
     rectangle.width = width;
+    rectangle.width = 8000;
     rectangle.height = height;
     rectangle.translation = { x: 100, y: 20 };
     const rectFill = editor.makeColorFill(

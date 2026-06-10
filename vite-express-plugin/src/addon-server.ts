@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import https from "https";
 import * as mkcert from "@mkcert/node";
 import express from "express";
@@ -6,6 +7,10 @@ import cors from "cors";
 import { WebSocketServer } from "ws";
 import { ExpressConfig } from "./types";
 
+/**
+ * The Addon Server can serve a static or HMR version of the Express Addon
+ * to be attached in Express > Add-ons > Add-on testing
+ */
 export const addonServer = async (config: ExpressConfig) => {
   const port = config.servePort;
   const addOnResponse = {
@@ -25,30 +30,40 @@ export const addonServer = async (config: ExpressConfig) => {
   };
 
   console.log("[addon-server] Make and install cert");
+  const certFile = path.join(__dirname, "cert.pem");
+  const keyFile = path.join(__dirname, "key.pem");
   await mkcert.generate({
     install: true,
     hosts: ["localhost"],
-    certFile: "./scripts/cert.pem",
-    keyFile: "./scripts/key.pem",
+    certFile,
+    keyFile,
   });
-  mkcert.installSync();
+  const cert = fs.readFileSync(certFile);
+  const key = fs.readFileSync(keyFile);
+
+  // Cleanup temp cert files
+  fs.unlink(certFile, () => null);
+  fs.unlink(keyFile, () => null);
 
   const app = express();
   app.use(cors());
   app.use((req, res, next) => {
+    // Express requires these headers for addon servers
     res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
     res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
     next();
   });
-  app.get("/", (req, res) => {
-    res.send(addOnResponse);
-  });
-  app.use(`/${config.manifest.testId}`, express.static(".tmp"));
+
+  // Send Express-specific addon JSON reply for root
+  app.get("/", (req, res) => res.send(addOnResponse));
+
+  // All other HTTPS requests serve up the folder
+  app.use(`/${config.manifest.testId}`, express.static("dist"));
 
   const server = https.createServer(
     {
-      key: fs.readFileSync("./scripts/key.pem"),
-      cert: fs.readFileSync("./scripts/cert.pem"),
+      key,
+      cert,
       requestCert: false,
       rejectUnauthorized: false,
     },
@@ -64,7 +79,24 @@ export const addonServer = async (config: ExpressConfig) => {
     ws.send("something");
   });
 
-  server.listen(port, () => {
-    console.log(`[addon-server] Hosting Addon on https://localhost:${port}`);
-  });
+  const updater = () => {
+    console.log(`[addon-server] Updating all clients`);
+    wss.clients.forEach((client) => {
+      client.send(
+        JSON.stringify({
+          addOnId: config.manifest.testId!,
+          changedFiles: ["*"],
+          isBuildSuccessful: true,
+          hasManifestChanged: false,
+          addOnManifest: config.manifest,
+        }),
+      );
+    });
+  };
+  const listener = () => {
+    server.listen(port, () => {
+      console.log(`[addon-server] Hosting Addon on https://localhost:${port}`);
+    });
+  };
+  return { updater, listener };
 };

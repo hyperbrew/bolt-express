@@ -4,17 +4,17 @@
   "type": "module",
   "scripts": {
     "dev": "cross-env MODE=dev vite --mode dev",
-    "dev_old": "vite build --mode staging && run-p devmain ccweb",
     "build": "vite build --mode build",
-    "serve": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=dummy",
-    "cserve": "tsx scripts/custom-server.ts",
+    "serve": "cross-env MODE=dev vite --mode serve",
     "ccweb": "ccweb-add-on-scripts start --analytics off --src=\".tmp\"",
     "cert": "npx @adobe/ccweb-add-on-ssl setup --hostname localhost",
-    "devmain": "cross-env MODE=dev vite --mode dev",
     "devcode": "vite build --watch --mode dev --config vite.config.code.ts",
     "buildcode": "vite build --config vite.config.code.ts",
     "zip": "cross-env MODE=zip vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json",
+    "dev_old": "vite build --mode staging && run-p devmain ccweb",
+    "serve_old": "ccweb-add-on-scripts start --analytics off --use \"vite build --mode build\" --src=.tmp",
+    "devmain_old": "cross-env MODE=dev vite --mode dev",
     "dep": "cross-env ACTION=dependencyCheck vite"
   },
   "devDependencies": {

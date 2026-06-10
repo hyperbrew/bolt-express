@@ -12,25 +12,6 @@ const buildCode = (runner: string) => {
   console.log(res.toString());
 };
 
-const serveExpress = (runner: string) => {
-  console.log(`starting SERVE EXPRESS`);
-  console.log(process.cwd());
-  exec(
-    `${runner} ccweb-add-on-scripts start --use \\"vite build\\" --src=dummy`,
-    { cwd: process.cwd() },
-    (err, stdout, stderr) => {
-      if (err) return console.error(err);
-      console.log(stdout);
-    },
-  );
-};
-const devMain = (runner: string) => {
-  console.log(`starting devMain`);
-  exec(`${runner} run devmain`, (err, stdout, stderr) => {
-    if (err) return console.error(err);
-    console.log(stdout);
-  });
-};
 const devCode = (runner: string) => {
   console.log(`starting devCode`);
   exec(`${runner} run devcode`, (err, stdout, stderr) => {
@@ -54,8 +35,6 @@ export const startCodeWatcher = (mode: string) => {
     buildCode(runner);
     if (isDevMode) {
       devCode(runner);
-      // devMain(runner);
-      // serveExpress(runner);
     }
   } catch (e) {
     console.log(e);
