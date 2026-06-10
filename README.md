@@ -183,9 +183,11 @@ More Details from Adobe: https://developer.adobe.com/express/add-ons/docs/guides
 
 Bolt Express makes messaging between the frontend UI and backend code layers simple and type-safe.
 
-Simply write your functions in `code.ts` on the backend, and import the `sandbox` variable to call the sandbox functions from the frontend with full type-safety:
+### 1. Call Backend Functions from the Frontend
 
-### 1. Write Function in Backend src-code/code.ts
+**Define the function** - `src-code/code.ts`
+
+Write your functions on the backend.
 
 ```ts
 const sandboxApi = {
@@ -196,9 +198,9 @@ const sandboxApi = {
 };
 ```
 
-### 2. Call that Function from the Frontend
+**Call the Function** - `src/main.svelte` / `src/main.tsx` / `src/main.vue`
 
-**Frontend:** `src/main.svelte` / `src/main.tsx` / `src/main.vue`
+Import the `sandbox` variable to call the sandbox functions from the frontend with full type-safety.
 
 ```ts
 import { sandbox } from "./utils/utils";
@@ -207,6 +209,37 @@ const helloWorld = async () => {
   let result = await sandbox.myFunction("hello", 400);
   console.log(result);
 };
+```
+
+### 2. Call Frontend Functions from the Backend
+
+Write and export your functions in on the frontend.
+
+**Define the function** - `src/utils/ui-apis.ts`
+
+```ts
+//* All exported functions are callable from the sandbox backend
+
+const selectionChanged = () => {
+  console.log("[UI] Selection Changed!");
+};
+
+const defaultExports = { selectionChanged };
+
+export type UIAPIs = typeof defaultExports;
+export default defaultExports;
+```
+
+**Call the Function** - `src-code/code.ts`
+
+Call those functions in the sandbox backend with full type-safety.
+
+```ts
+//* Trigger Custom UI API functions with the uiAPis object
+
+editor.context.on(constants.EditorEvent.selectionChange, () => {
+  uiApis.selectionChanged();
+});
 ```
 
 ---

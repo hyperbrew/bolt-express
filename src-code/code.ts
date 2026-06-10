@@ -2,11 +2,11 @@ import addOnSandboxSdk, { RuntimeType } from "add-on-sdk-document-sandbox";
 
 import { editor, colorUtils, constants } from "express-document-sdk";
 
-// import type * as UIApisType from '../src/utils/apis'
+import type { UIAPIs } from "../src/utils/ui-apis";
 
 const { runtime } = addOnSandboxSdk.instance;
-let uiApis: any;
-runtime.apiProxy(RuntimeType.panel).then((res) => (uiApis = res));
+let uiApis: UIAPIs;
+runtime.apiProxy(RuntimeType.panel).then((res) => (uiApis = res as UIAPIs));
 
 console.log("Sandbox code is running nowww");
 
@@ -35,11 +35,8 @@ const sandboxApi = {
 export type SandboxRemoteType = typeof sandboxApi;
 
 async function start() {
-  // Trigger UI function on event update
-  editor.context.on(constants.EditorEvent.selectionChange, async () => {
-    console.log("[sandbox] Selection Changed!");
-    console.log({ uiApis });
-    //@ts-ignore
+  //* Trigger Custom UI API functions with the uiAPis object
+  editor.context.on(constants.EditorEvent.selectionChange, () => {
     uiApis.selectionChanged();
   });
   runtime.exposeApi(sandboxApi);

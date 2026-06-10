@@ -3,7 +3,7 @@ import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 import type { SandboxRemoteType } from "../../src-code/code";
 export type { SandboxRemoteType };
 
-import * as apis from "./apis";
+import * as apis from "./ui-apis";
 
 export type SandboxProxyPromise =
   typeof AddOnSdk.instance.runtime.apiProxy<SandboxRemoteType>;
