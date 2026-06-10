@@ -1,26 +1,57 @@
-import { execSync, exec } from "child_process";
+import { execSync, exec, spawn } from "child_process";
+import pc = require("picocolors");
 
-export const triggerExpressRefresh = (file: string) => {
-  // TODO: remove if not needed
-};
-
-const buildCode = (runner: string) => {
-  console.log("Building code.ts ...");
-  const res = execSync(`${runner} run buildcode`, {
-    encoding: "utf-8",
+const spawnProcess = async (
+  label: string,
+  runner: string,
+  args: string[],
+): Promise<boolean> => {
+  return new Promise((resolve, reject) => {
+    const ls = spawn(runner, args, {
+      cwd: process.cwd(),
+      shell: true, // Use shell to ensure the command works on all platforms
+    });
+    ls.stdout.on("data", (data) => {
+      const msg = data.toString().trim();
+      if (msg) console.log(pc.cyan(`\n[${label}]`), msg);
+    });
+    ls.stderr.on("data", (data) => {
+      const msg = data.toString().trim();
+      if (msg) console.log(pc.cyan(`\n[${label}]`), pc.red("error"), msg);
+    });
+    ls.on("close", (code) => {
+      if (code !== 0) {
+        console.log(
+          pc.cyan(`\n[${label}]`),
+          pc.red("error"),
+          `process exited with code ${code}`,
+        );
+        reject();
+      } else {
+        console.log(pc.cyan(`\n[${label}]`), `process completed successfully`);
+        resolve(true);
+      }
+    });
+    ls.on("error", (code) => {
+      console.log(
+        pc.cyan(`\n[${label}]`),
+        pc.red("error"),
+        `process errored with code ${code}`,
+      );
+      reject();
+    });
   });
-  console.log(res.toString());
 };
 
-const devCode = (runner: string) => {
-  console.log(`starting devCode`);
-  exec(`${runner} run devcode`, (err, stdout, stderr) => {
-    if (err) return console.error(err);
-    console.log(stdout);
-  });
+const buildCode = async (runner: string) => {
+  return await spawnProcess("buildCode", runner, ["run", "buildcode"]);
 };
 
-export const startCodeWatcher = (mode: string) => {
+const devCode = async (runner: string) => {
+  return await spawnProcess("devCode", runner, ["run", "devcode"]);
+};
+
+export const startCodeWatcher = async (mode: string) => {
   // console.log(`in code watcher MODE: ${mode}`);
   const exe = process.argv[1];
   const scriptMode = process.argv[3];
@@ -32,9 +63,9 @@ export const startCodeWatcher = (mode: string) => {
     console.warn(`⚠️ Unsupported runner. May encounter issues: ${runner}`);
   }
   try {
-    buildCode(runner);
+    await buildCode(runner);
     if (isDevMode) {
-      devCode(runner);
+      devCode(runner); // don't wait for devcode completion
     }
   } catch (e) {
     console.log(e);

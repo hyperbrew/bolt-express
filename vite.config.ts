@@ -17,7 +17,7 @@ const action = process.env.ACTION;
 const mode = process.env.MODE || "";
 
 if (action) runAction(config, action);
-expressPluginInit(config, mode);
+// expressPluginInit(config, mode);
 
 export default defineConfig({
   define: {

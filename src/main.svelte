@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { initBolt, sandbox } from "./utils/utils";
+  import { initBolt, sandbox, runtime } from "./utils/utils";
 
   // BOLT_SAMPLECODE_START
   import boltIconLight from "./assets/bolt-express-lightmode.svg";
@@ -54,7 +54,7 @@
 
   <div class="card">
     <button on:click={increment}>
-      Count {count}
+      Counttt {count}
     </button>
     <button on:click={helloWorld}>Hello</button>
   </div>

@@ -1,7 +1,9 @@
-import { RuntimeType } from "@adobe/ccweb-add-on-sdk-types/add-on-sdk-document-sandbox";
+import { RuntimeType, Runtime } from "@adobe/ccweb-add-on-sdk-types/iframe-ui";
 import AddOnSdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 import type { SandboxRemoteType } from "../../src-code/code";
 export type { SandboxRemoteType };
+
+import * as apis from "./apis";
 
 export type SandboxProxyPromise =
   typeof AddOnSdk.instance.runtime.apiProxy<SandboxRemoteType>;
@@ -9,16 +11,22 @@ export type SandboxProxy = Awaited<
   ReturnType<NonNullable<SandboxProxyPromise>>
 >;
 
-export const getRuntime = (): Promise<SandboxProxy> => {
+export const getRuntime = (): Promise<{
+  runtime: Runtime;
+  sandbox: SandboxProxy;
+}> => {
   return new Promise((resolve, reject) => {
     AddOnSdk.ready
       .then(async () => {
         const { runtime } = AddOnSdk.instance;
         if (!runtime) return console.error("Runtime not found");
-        const sandboxProxy = await runtime.apiProxy<SandboxRemoteType>(
+        const sandboxProxy = await runtime.apiProxy!<SandboxRemoteType>(
           "documentSandbox" as RuntimeType,
         );
-        return resolve(sandboxProxy);
+        return resolve({
+          sandbox: sandboxProxy,
+          runtime: runtime,
+        });
       })
       .catch((err) => {
         console.error("Sandbox SDK Error:", err);
@@ -28,6 +36,7 @@ export const getRuntime = (): Promise<SandboxProxy> => {
 
 //@ts-ignore
 export let sandbox: SandboxProxy = {};
+export let runtime: Runtime | {} = {};
 console.log("sandbox", sandbox);
 
 const mode = import.meta.env.MODE;
@@ -41,7 +50,9 @@ export const initBolt = async () => {
     location.href = devUrl;
   }
   getRuntime().then((res) => {
-    sandbox = res;
+    sandbox = res.sandbox;
+    runtime = res.runtime;
+    res.runtime.exposeApi!(apis);
     console.log("sandbox", sandbox);
   });
 };

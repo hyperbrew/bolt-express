@@ -1,7 +1,7 @@
 import type { Plugin } from "vite";
 import * as fs from "fs";
 import * as path from "path";
-import { startCodeWatcher, triggerExpressRefresh } from "./utils";
+import { startCodeWatcher } from "./utils";
 import {
   packageSync,
   emptyFolder,
@@ -45,13 +45,16 @@ const hmrUpdate = () => {
   serverUpdate();
 };
 
-export const expressPluginInit = (config: ExpressConfig, mode: string) => {
+export const expressPluginInit = async (
+  config: ExpressConfig,
+  mode: string,
+) => {
   // fs.mkdirSync(tmp, { recursive: true });
   fs.mkdirSync(dist, { recursive: true });
   if (mode === "build" || mode === "zip") {
     emptyFolder(dist);
   }
-  startCodeWatcher(mode);
+  await startCodeWatcher(mode);
   if (mode === "dev" || mode === "serve") {
     addonServer(config).then(({ updater, listener }) => {
       serverUpdate = updater;
@@ -65,6 +68,10 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
   mode?: string,
 ) => ({
   name: "vite-express-plugin",
+  async buildStart() {
+    console.log("build start");
+    await expressPluginInit(config, mode!);
+  },
   hotUpdate({ modules }) {
     console.log("hot update");
     if (mode === "dev") {
@@ -103,7 +110,6 @@ export const expressPlugin: (config: ExpressConfig, mode?: string) => Plugin = (
       fs.cpSync(dist, dist, { recursive: true });
       // copyFilesRecursively(tmp, dist, () => {
       //   console.log("Files Copied");
-      //   triggerExpressRefresh(path.join(dist, index));
       // });
       // }, 100);
     }
