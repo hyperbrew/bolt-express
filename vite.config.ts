@@ -30,6 +30,16 @@ export default defineConfig({
     //@ts-ignore
     expressPlugin(config, mode),
     mkcert(),
+    {
+      name: "custom-headers",
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+          res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+          next();
+        });
+      },
+    },
   ],
   base: "./",
   build: {
@@ -48,5 +58,10 @@ export default defineConfig({
   },
   server: {
     port: config.hmrPort,
+    cors: true,
+    // headers: {
+    //   "Cross-Origin-Resource-Policy": "cross-origin",
+    //   "Cross-Origin-Embedder-Policy": "require-corp",
+    // },
   },
 });
