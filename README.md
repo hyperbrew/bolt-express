@@ -251,3 +251,14 @@ Frontend code is built to the `dist` directory.
 The backend code is bundled into a single `code.js` file.
 
 The `manifest.json` is generated from the `express.config.ts` file with type-safety. This is configured when running `yarn create bolt-express`, but you can make additional modifications to the `express.config.ts` file after initialization.
+
+## Misc Troubleshooting
+
+- **Update a Bolt Express Project** To update an existing Bolt Express project to the the latest version, create a new Bolt Express project with the same framework (React, Vue, Svelte) and settings, then compare and update the following files:
+
+  1. `package.json` - Update all dependencies and scripts ( `vite-express-plugin` - usually contains the most frequent updates )
+  2. `vite.config.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
+  3. `vite.config.code.ts` - Unless you've modified the vite config yourself, you can just copy the contents of the latest into yours.
+  4. `express.config.ts` - Check if any new properties have been added that don't exist in your config.
+  5. `src/utils` - Update this entire folder unless you've made modifications to the library files.
+  6. `src-code/utils` - Update this entire folder unless you've made modifications to the library files.
